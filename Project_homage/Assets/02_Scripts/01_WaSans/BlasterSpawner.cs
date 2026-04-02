@@ -19,6 +19,11 @@ public class BlasterSpawner : MonoBehaviour
         InvokeRepeating("SpawnBlaster", spawnStart, spawnRate);
     }
 
+    private void BlastPattern1()
+    {
+
+    }
+
     private Vector3 SpawnRandomPosition() // Blaster 스폰 위치 랜덤 지정
     {
         float spawnPosX = Random.Range(-xRange, xRange);
@@ -39,7 +44,7 @@ public class BlasterSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.gameOver)
+        if (GameManager.Instance.gameOver || GameManager.Instance.gameClear)
         {
             if (IsInvoking("SpawnBlaster"))
             {
