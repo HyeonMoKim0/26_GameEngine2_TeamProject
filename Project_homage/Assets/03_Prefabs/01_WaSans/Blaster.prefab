@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1497225196487133956}
   maxDistance: 50
+  blastStartTime: 0.8
+  removeTime: 2
 --- !u!120 &1497225196487133956
 LineRenderer:
   serializedVersion: 2
@@ -130,7 +132,7 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7362572781254221183}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

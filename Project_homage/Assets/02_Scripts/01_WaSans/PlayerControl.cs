@@ -23,8 +23,10 @@ public class PlayerControl : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
-        move = transform.right * horizontalInput + transform.forward * verticalInput;
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        if (!GameManager.Instance.gameOver)
+        {
+            move = transform.right * horizontalInput + transform.forward * verticalInput;
+            controller.Move(move * moveSpeed * Time.deltaTime);
+        }
     }
 }

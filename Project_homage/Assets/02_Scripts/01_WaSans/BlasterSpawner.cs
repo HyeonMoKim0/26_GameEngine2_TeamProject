@@ -6,7 +6,9 @@ public class BlasterSpawner : MonoBehaviour
 {
     public GameObject blasterPrefab;
     private GameObject player;
-    public float spawnRate = 1.5f;
+
+    public float spawnStart;
+    public float spawnRate;
     private float xRange = 25;
     private float zRange = 10;
 
@@ -14,7 +16,7 @@ public class BlasterSpawner : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        InvokeRepeating("SpawnBlaster", 2.0f, spawnRate);
+        InvokeRepeating("SpawnBlaster", spawnStart, spawnRate);
     }
 
     private Vector3 SpawnRandomPosition() // Blaster 스폰 위치 랜덤 지정
@@ -37,6 +39,12 @@ public class BlasterSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.Instance.gameOver)
+        {
+            if (IsInvoking("SpawnBlaster"))
+            {
+                CancelInvoke("SpawnBlaster");
+            }
+        }
     }
 }

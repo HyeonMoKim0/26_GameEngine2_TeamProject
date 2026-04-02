@@ -6,6 +6,8 @@ public class Blaster : MonoBehaviour
 {
     public LineRenderer lineRenderer;
     public float maxDistance;
+    public float blastStartTime;
+    public float removeTime;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class Blaster : MonoBehaviour
     // Blast 발사
     IEnumerator Blast()
     {
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(blastStartTime);
         lineRenderer.SetPosition(0, transform.position);
 
         RaycastHit hit;
@@ -29,6 +31,7 @@ public class Blaster : MonoBehaviour
             {
                 Debug.Log("적중!");
                 Destroy(hit.collider.gameObject);
+                GameManager.Instance.gameOver = true;
             }
         }
         else
@@ -39,7 +42,7 @@ public class Blaster : MonoBehaviour
 
     IEnumerator DestroyBlaster() // Blaster 자동 제거
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(removeTime);
         Destroy(gameObject);
     }
 
