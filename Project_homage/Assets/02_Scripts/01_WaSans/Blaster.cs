@@ -5,13 +5,37 @@ using UnityEngine;
 public class Blaster : MonoBehaviour
 {
     public LineRenderer lineRenderer;
+    public float maxDistance;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(DestroyBlaster());
+        StartCoroutine(Blast());
     }
 
+    // Blast 발사
+    IEnumerator Blast()
+    {
+        yield return new WaitForSeconds(0.8f);
+        lineRenderer.SetPosition(0, transform.position);
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
+        {
+            lineRenderer.SetPosition(1, hit.point);
+
+            if (hit.collider.CompareTag("Player"))
+            {
+                Debug.Log("적중!");
+                Destroy(hit.collider.gameObject);
+            }
+        }
+        else
+        {
+            lineRenderer.SetPosition(1, transform.position + (transform.forward * maxDistance));
+        }
+    }
 
     IEnumerator DestroyBlaster() // Blaster 자동 제거
     {

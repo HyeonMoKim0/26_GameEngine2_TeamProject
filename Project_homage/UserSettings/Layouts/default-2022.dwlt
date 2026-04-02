@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 8}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 352
     height: 1299
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -149,8 +149,8 @@ MonoBehaviour:
     y: 0
     width: 495
     height: 1299
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -300,8 +300,8 @@ MonoBehaviour:
     y: 0
     width: 1713
     height: 775
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -405,24 +405,24 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/04_Materials
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
-  m_StartGridSize: 64
+  m_StartGridSize: 55
   m_LastFolders:
-  - Assets
+  - Assets/04_Materials
   m_LastFoldersGridSize: 55
   m_LastProjectPath: C:\Github\26_GameEngine2_TeamProject\Project_homage
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9a5e0000
-    m_LastClickedID: 24218
-    m_ExpandedIDs: 000000009a5e00009c5e00009e5e0000a05e000000ca9a3bffffff7f
+    m_SelectedIDs: ac5e0000
+    m_LastClickedID: 24236
+    m_ExpandedIDs: 000000009a5e00009c5e00009e5e0000a05e0000aa5e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -503,7 +503,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 64
+    m_GridSize: 55
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 200
 --- !u!114 &15
@@ -567,9 +567,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 226c0000
-    m_LastClickedID: 27682
-    m_ExpandedIDs: 000000009a5e00009c5e00009e5e0000a05e0000
+    m_SelectedIDs: 9c5e0000
+    m_LastClickedID: 24220
+    m_ExpandedIDs: 000000009a5e00009c5e00009e5e0000a05e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -622,8 +622,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 6c6e0000
-    m_LastClickedInstanceID: 28268
+    m_SelectedInstanceIDs: 3a5e0000
+    m_LastClickedInstanceID: 24122
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 00000000
     m_RenameOverlay:
@@ -739,7 +739,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d45d0000
+      m_SelectedIDs: 4a5e0000
       m_LastClickedID: 0
       m_ExpandedIDs: 2efbffff
       m_RenameOverlay:
@@ -1133,7 +1133,7 @@ MonoBehaviour:
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: UnityEditor.SceneViewCameraOverlay
-      index: 9
+      index: 8
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
@@ -1148,9 +1148,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.4452815, y: -59.87578, z: -83.75329}
+    m_Target: {x: -73.2937, y: -76.12643, z: -11.525398}
     speed: 2
-    m_Value: {x: 5.4452815, y: -59.87578, z: -83.75329}
+    m_Value: {x: -73.2937, y: -76.12643, z: -11.525398}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1196,9 +1196,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0017972406, y: -0.95643187, z: 0.2914705, w: -0.0066589923}
+    m_Target: {x: -0.25471953, y: 0.6653147, z: -0.25962195, w: -0.65174586}
     speed: 2
-    m_Value: {x: 0.0017972406, y: 0.9564319, z: -0.2914705, w: 0.0066589927}
+    m_Value: {x: -0.2547575, y: 0.66541386, z: -0.25966066, w: -0.651843}
   m_Size:
     m_Target: 64.413765
     speed: 2
@@ -1295,7 +1295,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
