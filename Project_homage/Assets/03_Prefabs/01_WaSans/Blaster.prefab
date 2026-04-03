@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 1497225196487133956}
   maxDistance: 50
-  blastStartTime: 0.8
+  blastStartTime: 0.5
   removeTime: 2
 --- !u!120 &1497225196487133956
 LineRenderer:

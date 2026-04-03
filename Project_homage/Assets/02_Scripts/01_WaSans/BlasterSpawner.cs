@@ -28,7 +28,7 @@ public class BlasterSpawner : MonoBehaviour
     {
         float spawnPosX = Random.Range(-xRange, xRange);
         float spawnPosZ = Random.Range(-zRange, zRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 1, spawnPosZ);
+        Vector3 randomPos = new Vector3(spawnPosX, 2, spawnPosZ);
 
         return randomPos;
     }
