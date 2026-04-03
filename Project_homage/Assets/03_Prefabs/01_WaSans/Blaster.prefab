@@ -122,7 +122,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 1497225196487133956}
   maxDistance: 50
   blastStartTime: 0.5
-  removeTime: 2
+  removeTime: 0.8
 --- !u!120 &1497225196487133956
 LineRenderer:
   serializedVersion: 2

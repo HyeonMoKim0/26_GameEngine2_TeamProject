@@ -12,14 +12,14 @@ public class Blaster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DestroyBlaster());
-        StartCoroutine(Blast());
+        StartCoroutine(Blast(blastStartTime));
+        StartCoroutine(DestroyBlaster(removeTime));
     }
 
     // Blast 발사
-    IEnumerator Blast()
+    IEnumerator Blast(float blastTime)
     {
-        yield return new WaitForSeconds(blastStartTime);
+        yield return new WaitForSeconds(blastTime);
         lineRenderer.SetPosition(0, transform.position);
 
         RaycastHit hit;
@@ -40,7 +40,7 @@ public class Blaster : MonoBehaviour
         }
     }
 
-    IEnumerator DestroyBlaster() // Blaster 자동 제거
+    IEnumerator DestroyBlaster(float removeTime) // Blaster 자동 제거
     {
         yield return new WaitForSeconds(removeTime);
         Destroy(gameObject);

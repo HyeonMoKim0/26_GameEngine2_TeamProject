@@ -12,16 +12,23 @@ public class BlasterSpawner : MonoBehaviour
     private float xRange = 25;
     private float zRange = 10;
 
+    Vector3 spawnPos;
+    Vector3 spawnDirection;
+    Quaternion spawnRotation;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        InvokeRepeating("SpawnBlaster", spawnStart, spawnRate);
+        InvokeRepeating("SpawnBlaster", spawnStart, spawnRate); 
+        // Blast 생성 패턴들 랜덤으로 호출하도록 해야함
+
     }
 
+    // Blast 생성 패턴화 해야함
     private void BlastPattern1()
     {
-
+        
     }
 
     private Vector3 SpawnRandomPosition() // Blaster 스폰 위치 랜덤 지정
@@ -35,10 +42,12 @@ public class BlasterSpawner : MonoBehaviour
 
     void SpawnBlaster() // Blaster 스폰
     {
-        Vector3 spawnPos = SpawnRandomPosition();
-        Vector3 direction = player.transform.position - spawnPos;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        Instantiate(blasterPrefab, spawnPos, rotation);
+        spawnPos = SpawnRandomPosition();
+        spawnDirection = player.transform.position - spawnPos;
+        spawnRotation = Quaternion.LookRotation(spawnDirection);
+        blasterPrefab.GetComponent<Blaster>().blastStartTime = 0.5f;
+        blasterPrefab.GetComponent<Blaster>().removeTime = 0.8f;
+        Instantiate(blasterPrefab, spawnPos, spawnRotation);
     }
 
     // Update is called once per frame

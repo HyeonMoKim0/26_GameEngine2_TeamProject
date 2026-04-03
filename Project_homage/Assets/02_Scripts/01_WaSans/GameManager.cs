@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     
     void SansClear()
     {
-        gameClear = true;
         Debug.Log("Clear!");
     }
 
@@ -59,6 +58,7 @@ public class GameManager : MonoBehaviour
             currentTime = 0;
             if (!gameOver)
             {
+                gameClear = true;
                 SansClear();
             }
             else
