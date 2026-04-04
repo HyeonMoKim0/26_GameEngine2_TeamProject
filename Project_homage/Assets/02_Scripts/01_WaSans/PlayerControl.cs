@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        if (!GameManager.Instance.gameOver)
+        if (!SansManager.Instance.gameOver)
         {
             move = transform.right * horizontalInput + transform.forward * verticalInput;
             controller.Move(move * moveSpeed * Time.deltaTime);

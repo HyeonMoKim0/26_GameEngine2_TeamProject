@@ -53,7 +53,7 @@ public class BlasterSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.gameOver || GameManager.Instance.gameClear)
+        if (SansManager.Instance.gameOver || SansManager.Instance.gameClear)
         {
             if (IsInvoking("SpawnBlaster"))
             {

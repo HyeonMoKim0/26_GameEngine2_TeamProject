@@ -31,7 +31,7 @@ public class Blaster : MonoBehaviour
             {
                 Debug.Log("적중!");
                 Destroy(hit.collider.gameObject);
-                GameManager.Instance.gameOver = true;
+                SansManager.Instance.gameOver = true;
             }
         }
         else
