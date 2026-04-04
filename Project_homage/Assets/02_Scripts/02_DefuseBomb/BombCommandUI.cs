@@ -12,23 +12,13 @@ public class BombCommandUI : MonoBehaviour
     {
         commandUI = GetComponent<TextMeshProUGUI>();
 
-        commandUI.text = SetCommand();
-        StartCoroutine(DisenableTextUI());
+        StartCoroutine(DisenableUI());
     }
 
-    IEnumerator DisenableTextUI()
+    IEnumerator DisenableUI()
     {
         yield return new WaitForSeconds(3);
         this.gameObject.SetActive(false);
-    }
-
-    string SetCommand()
-    {
-        string[] commands = {
-            "Cut the RED wires!",
-            "Don't cut the RED wires!" };
-        int index = Random.Range(0, commands.Length);
-        return commands[index];
     }
 
     // Update is called once per frame
