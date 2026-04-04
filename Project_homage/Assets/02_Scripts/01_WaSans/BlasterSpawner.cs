@@ -6,9 +6,8 @@ public class BlasterSpawner : MonoBehaviour
 {
     public GameObject blasterPrefab;
     private GameObject player;
+    private Coroutine patternCoroutine;
 
-    public float spawnStart;
-    public float spawnRate;
     private float xRange = 25;
     private float zRange = 10;
 
@@ -20,34 +19,79 @@ public class BlasterSpawner : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        InvokeRepeating("SpawnBlaster", spawnStart, spawnRate); 
         // Blast 생성 패턴들 랜덤으로 호출하도록 해야함
-
+        StartBlastPattern2();
     }
 
-    // Blast 생성 패턴화 해야함
-    private void BlastPattern1()
+    public void StartBlastPattern1()
     {
-        
+        patternCoroutine = StartCoroutine(SpawnBlasterRoutine1());
+        Invoke("StopPattern", 7f);
     }
 
-    private Vector3 SpawnRandomPosition() // Blaster 스폰 위치 랜덤 지정
+    IEnumerator SpawnBlasterRoutine1()
     {
-        float spawnPosX = Random.Range(-xRange, xRange);
-        float spawnPosZ = Random.Range(-zRange, zRange);
-        Vector3 randomPos = new Vector3(spawnPosX, 2, spawnPosZ);
+        float spawnRate = 0.4f;
+        while (true)
+        {
+            float spawnPosX = Random.Range(-xRange, xRange);
+            float spawnPosZ = Random.Range(-zRange, zRange);
+            spawnPos = new Vector3(spawnPosX, 2, spawnPosZ);
+            BlastPattern1(spawnPos);
 
-        return randomPos;
+            yield return new WaitForSeconds(spawnRate);
+        }
     }
 
-    void SpawnBlaster() // Blaster 스폰
+    private void BlastPattern1(Vector3 spawnPos) // 무작위 Blaster 생성 패턴
     {
-        spawnPos = SpawnRandomPosition();
         spawnDirection = player.transform.position - spawnPos;
         spawnRotation = Quaternion.LookRotation(spawnDirection);
         blasterPrefab.GetComponent<Blaster>().blastStartTime = 0.5f;
-        blasterPrefab.GetComponent<Blaster>().removeTime = 0.8f;
+        blasterPrefab.GetComponent<Blaster>().removeTime = blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.3f;
         Instantiate(blasterPrefab, spawnPos, spawnRotation);
+    }
+
+    public void StartBlastPattern2()
+    {
+        StartCoroutine(SpawnBlasterRoutine2());
+        Invoke("StopPattern", 9f);
+    }
+
+    private float r = 10f;
+    private float currentAngle = 0f; // 현재 각도
+    private float angleStep = 18f;   // 한 번에 회전할 각도 (조정 가능)
+
+    IEnumerator SpawnBlasterRoutine2()
+    {
+        while (true)
+        {
+            SpawnBlaster2();
+            // 각도를 증가시켜 반시계 방향으로 회전 (각도가 커질수록 Sin은 양수가 되어 +X로 이동)
+            currentAngle += angleStep;
+
+            yield return new WaitForSeconds(0.07f);
+        }
+    }
+
+    private void SpawnBlaster2()
+    {
+        float radian = currentAngle * Mathf.Deg2Rad;
+        spawnPos = new Vector3(Mathf.Sin(radian) * r, 2f, Mathf.Cos(radian) * r);
+        spawnDirection = new Vector3(0, 2, 0) - spawnPos;
+        spawnRotation = Quaternion.LookRotation(spawnDirection);
+        blasterPrefab.GetComponent<Blaster>().blastStartTime = 1f;
+        blasterPrefab.GetComponent<Blaster>().removeTime = blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.2f;
+        Instantiate(blasterPrefab, spawnPos, spawnRotation);
+    }
+
+    void StopPattern()
+    {
+        if (patternCoroutine != null)
+        {
+            StopCoroutine(patternCoroutine);
+            patternCoroutine = null;
+        }
     }
 
     // Update is called once per frame
@@ -55,10 +99,7 @@ public class BlasterSpawner : MonoBehaviour
     {
         if (SansManager.Instance.gameOver || SansManager.Instance.gameClear)
         {
-            if (IsInvoking("SpawnBlaster"))
-            {
-                CancelInvoke("SpawnBlaster");
-            }
+            StopAllCoroutines();
         }
     }
 }
