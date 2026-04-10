@@ -19,7 +19,8 @@ public class BlasterSpawner : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        // Blast 생성 패턴들 랜덤으로 호출하도록 해야함
+        // 생성 패턴을 랜덤으로 호출하도록
+        // 패턴이 종료되었을 때 ?초의 대기시간 후 다시 랜덤 패턴 실행
         StartBlastPattern2();
     }
 
