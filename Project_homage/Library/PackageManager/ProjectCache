@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639109044464606718
+      ticks: 639117732224943744
     m_Hash: 3411266789
   m_LockFileStatus:
     m_FilePath: C:/Github/26_GameEngine2_TeamProject/Project_homage/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639109044464606718
+      ticks: 639117732224995312
     m_Hash: 3034174635
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -2965,12 +2965,14 @@ m_ResolvedPackages:
     - 3.0.37
     - 3.0.38
     - 3.0.39
+    - 3.0.40
     compatible:
     - 3.0.36
     - 3.0.37
     - 3.0.38
     - 3.0.39
-    recommended: 3.0.39
+    - 3.0.40
+    recommended: 3.0.40
     deprecated:
     - 3.0.37
   dependencies:
