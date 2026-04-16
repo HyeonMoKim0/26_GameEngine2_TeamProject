@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject pauseScreen;
+    public TextMeshProUGUI lifeUI;
+    public TextMeshProUGUI roundUI;
     public int lives = 4;
     public int currentRound = 0;
 
@@ -27,6 +30,7 @@ public class GameManager : MonoBehaviour
     public void RandomRoundStart()
     {
         currentRound++;
+        ReloadUI();
 
         int randomRound = Random.Range(1, 4);
         switch (randomRound)
@@ -66,6 +70,12 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    private void ReloadUI()
+    {
+        lifeUI.text = "Lives: " + lives;
+        roundUI.text = "Round: " + currentRound;
     }
 
     public void GameOver()
