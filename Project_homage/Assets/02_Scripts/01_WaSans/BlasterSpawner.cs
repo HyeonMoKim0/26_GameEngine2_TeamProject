@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class BlasterSpawner : MonoBehaviour
@@ -12,8 +13,8 @@ public class BlasterSpawner : MonoBehaviour
     private float zRange = 10;
 
     Vector3 spawnPos;
-    Vector3 spawnDirection;
-    Quaternion spawnRotation;
+    Vector3 spawnDir;
+    Quaternion spawnRot;
 
     // Start is called before the first frame update
     void Start()
@@ -21,13 +22,25 @@ public class BlasterSpawner : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         // 생성 패턴을 랜덤으로 호출하도록
         // 패턴이 종료되었을 때 ?초의 대기시간 후 다시 랜덤 패턴 실행
-        StartBlastPattern2();
+        RandomBlastPattern();
     }
 
-    public void StartBlastPattern1()
+    void RandomBlastPattern()
     {
-        patternCoroutine = StartCoroutine(SpawnBlasterRoutine1());
-        Invoke("StopPattern", 7f);
+        int randomBlast = Random.Range(1, 3);
+        switch (randomBlast)
+        {
+            case 1:
+                patternCoroutine =
+                    StartCoroutine(SpawnBlasterRoutine1());
+                Invoke(nameof(StopPattern), 7f);
+                break;
+            case 2:
+                patternCoroutine =
+                    StartCoroutine(SpawnBlasterRoutine2());
+                Invoke(nameof(StopPattern), 9f);
+                break;
+        }
     }
 
     IEnumerator SpawnBlasterRoutine1()
@@ -35,28 +48,26 @@ public class BlasterSpawner : MonoBehaviour
         float spawnRate = 0.4f;
         while (true)
         {
-            float spawnPosX = Random.Range(-xRange, xRange);
-            float spawnPosZ = Random.Range(-zRange, zRange);
-            spawnPos = new Vector3(spawnPosX, 2, spawnPosZ);
-            BlastPattern1(spawnPos);
+            SpawnBlaster1();
 
             yield return new WaitForSeconds(spawnRate);
         }
     }
 
-    private void BlastPattern1(Vector3 spawnPos) // 무작위 Blaster 생성 패턴
+    private void SpawnBlaster1() // 무작위 Blaster 생성 패턴
     {
-        spawnDirection = player.transform.position - spawnPos;
-        spawnRotation = Quaternion.LookRotation(spawnDirection);
-        blasterPrefab.GetComponent<Blaster>().blastStartTime = 0.5f;
-        blasterPrefab.GetComponent<Blaster>().removeTime = blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.3f;
-        Instantiate(blasterPrefab, spawnPos, spawnRotation);
-    }
+        float spawnPosX = Random.Range(-xRange, xRange);
+        float spawnPosZ = Random.Range(-zRange, zRange);
 
-    public void StartBlastPattern2()
-    {
-        StartCoroutine(SpawnBlasterRoutine2());
-        Invoke("StopPattern", 9f);
+        spawnPos = new Vector3(spawnPosX, 2, spawnPosZ);
+        spawnDir = player.transform.position - spawnPos;
+        spawnRot = Quaternion.LookRotation(spawnDir);
+
+        blasterPrefab.GetComponent<Blaster>().blastStartTime = 0.5f;
+        blasterPrefab.GetComponent<Blaster>().removeTime
+            = blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.3f;
+        
+        Instantiate(blasterPrefab, spawnPos, spawnRot);
     }
 
     private float r = 10f;
@@ -78,12 +89,16 @@ public class BlasterSpawner : MonoBehaviour
     private void SpawnBlaster2()
     {
         float radian = currentAngle * Mathf.Deg2Rad;
+
         spawnPos = new Vector3(Mathf.Sin(radian) * r, 2f, Mathf.Cos(radian) * r);
-        spawnDirection = new Vector3(0, 2, 0) - spawnPos;
-        spawnRotation = Quaternion.LookRotation(spawnDirection);
+        spawnDir = new Vector3(0, 2, 0) - spawnPos;
+        spawnRot = Quaternion.LookRotation(spawnDir);
+
         blasterPrefab.GetComponent<Blaster>().blastStartTime = 1f;
-        blasterPrefab.GetComponent<Blaster>().removeTime = blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.2f;
-        Instantiate(blasterPrefab, spawnPos, spawnRotation);
+        blasterPrefab.GetComponent<Blaster>().removeTime =
+            blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.2f;
+
+        Instantiate(blasterPrefab, spawnPos, spawnRot);
     }
 
     void StopPattern()
@@ -93,12 +108,15 @@ public class BlasterSpawner : MonoBehaviour
             StopCoroutine(patternCoroutine);
             patternCoroutine = null;
         }
+
+        // 패턴 종료 1초 후 랜덤 패턴 실행
+        Invoke(nameof(RandomBlastPattern), 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SansManager.Instance.gameOver || SansManager.Instance.gameClear)
+        if (!SansManager.Instance.isGame)
         {
             StopAllCoroutines();
         }

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -23,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        if (!SansManager.Instance.gameOver)
+        if (SansManager.Instance.isGame)
         {
             move = transform.right * horizontalInput + transform.forward * verticalInput;
             controller.Move(move * moveSpeed * Time.deltaTime);

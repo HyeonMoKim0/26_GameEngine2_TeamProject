@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI lifeUI;
     public TextMeshProUGUI roundUI;
 
-    public int lives = 4;
+    public int life = 4;
     public int totalRound = 0;
 
     private void Awake()
@@ -76,8 +76,8 @@ public class GameManager : MonoBehaviour
 
     public void failedGame()
     {
-        lives--;
-        if (lives > 0)
+        life--;
+        if (life > 0)
         {
             RoundStandby();
         }
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
 
     private void ReloadUI()
     {
-        lifeUI.text = "Lives: " + lives;
+        lifeUI.text = "Life: " + life;
         roundUI.text = "Round: " + totalRound;
     }
 

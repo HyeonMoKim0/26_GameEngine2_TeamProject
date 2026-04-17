@@ -512,7 +512,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1241565175}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: RandomRoundStart
+        m_MethodName: RoundStandby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -593,7 +593,6 @@ MonoBehaviour:
   lifeUI: {fileID: 1842745956}
   roundUI: {fileID: 1599952329}
   lives: 4
-  currentRound: 0
   totalRound: 0
 --- !u!4 &1241565176
 Transform:
@@ -1159,7 +1158,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1986431161
 MonoBehaviour:
   m_ObjectHideFlags: 0

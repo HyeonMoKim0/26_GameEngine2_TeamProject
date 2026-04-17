@@ -8,10 +8,10 @@ public class SansManager : MonoBehaviour
 {
     public static SansManager Instance;
     public TextMeshProUGUI timeText;
-    public bool gameOver;
     public float gameTime;
     public float currentTime;
-    public bool gameClear;
+    public bool isGame;
+    public bool gameOver;
 
     void Awake()
     {
@@ -22,8 +22,8 @@ public class SansManager : MonoBehaviour
     void Start()
     {
         gameTime = 50;
+        isGame = true;
         gameOver = false;
-        gameClear = false;
         currentTime = gameTime;
     }
 
@@ -34,38 +34,32 @@ public class SansManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(currentTime % 60f);
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-    
-    void SansClear()
-    {
-        Debug.Log("Clear!");
-    }
-
-    void GameOver()
-    {
-        Debug.Log("Game Over..");
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentTime > 0 && !gameOver)
+        // 게임이 진행중일때 시간이 흐름 (플레이어가 파괴되었을 때 종료)
+        if (isGame)
         {
             currentTime -= Time.deltaTime;
             UpdateTimerUI();
-        }
-        else
-        {
-            currentTime = 0;
-            if (!gameOver)
+            if (currentTime < 0 || gameOver)
             {
-                gameClear = true;
-                SansClear();
-            }
-            else
-            {
-                GameOver();
-            }
-        }
+                isGame = false;
 
+                if (currentTime < 0) // 시간이 모두 흘렀을 때
+                {
+                    currentTime = 0;
+                    Debug.Log("Game Clear!");
+                }
+                else if (gameOver) // 플레이어가 파괴되었을 때
+                {
+                    GameManager.instance.life--;
+                    Debug.Log("Game Fail!");
+                }
+
+                Invoke(nameof(GameManager.instance.RoundStandby), 2f);
+            }
+        }
     }
 }
