@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,8 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject pauseScreen;
     public TextMeshProUGUI lifeUI;
     public TextMeshProUGUI roundUI;
+
     public int lives = 4;
-    public int currentRound = 0;
+    public int totalRound = 0;
 
     private void Awake()
     {
@@ -27,12 +27,20 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(pauseScreen);
     }
 
-    public void RandomRoundStart()
+    public void RoundStandby()
     {
-        currentRound++;
+        totalRound++;
         ReloadUI();
 
         int randomRound = Random.Range(1, 4);
+        SceneManager.LoadScene("10_StandbyScene");
+        StartCoroutine(LoadScene(randomRound));
+    }
+
+    IEnumerator LoadScene(int randomRound)
+    {
+
+        yield return new WaitForSeconds(5f);
         switch (randomRound)
         {
             case 1:
@@ -45,6 +53,13 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("03_Accept");
                 break;
         }
+    }
+
+    IEnumerator HowTo(int randomRound)
+    {
+        yield return new WaitForSeconds(3f);
+
+
     }
 
     public void PauseGame()
@@ -64,7 +79,7 @@ public class GameManager : MonoBehaviour
         lives--;
         if (lives > 0)
         {
-            RandomRoundStart();
+            RoundStandby();
         }
         else
         {
@@ -75,7 +90,7 @@ public class GameManager : MonoBehaviour
     private void ReloadUI()
     {
         lifeUI.text = "Lives: " + lives;
-        roundUI.text = "Round: " + currentRound;
+        roundUI.text = "Round: " + totalRound;
     }
 
     public void GameOver()
