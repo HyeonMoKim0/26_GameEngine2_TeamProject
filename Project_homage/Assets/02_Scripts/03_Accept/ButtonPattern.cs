@@ -13,7 +13,7 @@ public class ButtonPattern : MonoBehaviour
     public float moveSpeed = 960f;
 
     bool isButtonPattern1 = false;
-    bool isButtonPattern2 = false;
+    bool isButtonPattern2 = true;
 
     // Start is called before the first frame update
     void Start()
