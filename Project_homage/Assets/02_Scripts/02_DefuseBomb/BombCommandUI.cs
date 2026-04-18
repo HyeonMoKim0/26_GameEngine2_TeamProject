@@ -12,12 +12,11 @@ public class BombCommandUI : MonoBehaviour
     {
         commandUI = GetComponent<TextMeshProUGUI>();
 
-        StartCoroutine(DisenableUI());
+        Invoke(nameof(DisenableUI), 3f);
     }
 
-    IEnumerator DisenableUI()
+    void DisenableUI()
     {
-        yield return new WaitForSeconds(3);
         this.gameObject.SetActive(false);
     }
 

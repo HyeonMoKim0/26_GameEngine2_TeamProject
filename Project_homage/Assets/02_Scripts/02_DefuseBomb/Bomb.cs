@@ -11,9 +11,7 @@ public class Bomb : MonoBehaviour
 {
     GameObject commandText;
 
-    float bombTime = 5f;
-    float currentTime;
-    int countWire = 1;
+    int countWire = 2;
     command trig;
 
     public enum wireType
@@ -31,7 +29,6 @@ public class Bomb : MonoBehaviour
     void Start()
     {
         commandText = GameObject.Find("Command Text");
-        currentTime = bombTime;
         trig = SetDefuseTrigger();
     }
 
@@ -62,10 +59,10 @@ public class Bomb : MonoBehaviour
                 {
                     countWire--;
                     if (countWire == 0)
-                        Success();
+                        BombManager.instance.defused = true;
                 }
                 else
-                    Boom();
+                    BombManager.instance.wrong = true;
                 break;
 
             case command.DontCutRed:
@@ -73,10 +70,10 @@ public class Bomb : MonoBehaviour
                 {
                     countWire--;
                     if (countWire == 0)
-                        Success();
+                        BombManager.instance.defused = true;
                 }
                 else
-                    Boom();
+                    BombManager.instance.wrong = true;
                 break;
         }
     }
@@ -91,31 +88,9 @@ public class Bomb : MonoBehaviour
         DefuseBomb(wireType.Blue);
     }
 
-    void Success()
-    {
-        Debug.Log("Bomb defused!");
-        BombManager.instance.bombAlive = false;
-    }
-
-    void Boom()
-    {
-        Debug.Log("Wrong wire! BOOM!!");
-        BombManager.instance.gameOver = true;
-        BombManager.instance.bombAlive = false;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (BombManager.instance.bombAlive)
-            currentTime -= Time.deltaTime;
-
-        if (currentTime < 0)
-        {
-            Debug.Log("Time Over! BOOM!!");
-            BombManager.instance.gameOver = true;
-            BombManager.instance.bombAlive = false;
-            currentTime = 0;
-        }
+        
     }
 }

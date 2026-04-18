@@ -59,10 +59,12 @@ public class BlasterSpawner : MonoBehaviour
         float spawnPosX = Random.Range(-xRange, xRange);
         float spawnPosZ = Random.Range(-zRange, zRange);
 
+        // Spawn Position, Direction, Rotation
         spawnPos = new Vector3(spawnPosX, 2, spawnPosZ);
         spawnDir = player.transform.position - spawnPos;
         spawnRot = Quaternion.LookRotation(spawnDir);
 
+        // Blast Start Time, Remove Time
         blasterPrefab.GetComponent<Blaster>().blastStartTime = 0.5f;
         blasterPrefab.GetComponent<Blaster>().removeTime
             = blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.3f;

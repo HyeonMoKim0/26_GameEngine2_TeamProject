@@ -239,12 +239,12 @@ GameObject:
   - component: {fileID: 8637215}
   - component: {fileID: 8637214}
   m_Layer: 5
-  m_Name: Cancel Button
+  m_Name: Disagree Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8637213
 RectTransform:
   m_ObjectHideFlags: 0
@@ -308,7 +308,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8637215}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1171028968}
+        m_TargetAssemblyTypeName: AcceptManager, Assembly-CSharp
+        m_MethodName: Disagree
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8637215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,30 +737,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1171028967}
-  - component: {fileID: 1171028966}
+  - component: {fileID: 1171028968}
+  - component: {fileID: 1171028969}
   m_Layer: 0
-  m_Name: Button Manager
+  m_Name: Accept Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1171028966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1171028965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 307a9f3b84ee3754d8cdc53be964df17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceptButton: {fileID: 1856077321}
-  cancelButton: {fileID: 8637212}
-  buttonRange: 200
-  moveSpeed: 960
 --- !u!4 &1171028967
 Transform:
   m_ObjectHideFlags: 0
@@ -764,6 +761,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1171028968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171028965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f2f5f432dafbc429db97b17cce9034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGame: 0
+  agree: 0
+  disagree: 0
+--- !u!114 &1171028969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171028965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 307a9f3b84ee3754d8cdc53be964df17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agreeButton: {fileID: 1856077321}
+  disagreeButton: {fileID: 8637212}
+  buttonRange: 200
+  moveSpeed: 960
 --- !u!1 &1185264653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,12 +1033,12 @@ GameObject:
   - component: {fileID: 1856077324}
   - component: {fileID: 1856077323}
   m_Layer: 5
-  m_Name: Accept Button
+  m_Name: Agree Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1856077322
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1074,7 +1102,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1856077324}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1171028968}
+        m_TargetAssemblyTypeName: AcceptManager, Assembly-CSharp
+        m_MethodName: Agree
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1856077324
 MonoBehaviour:
   m_ObjectHideFlags: 0

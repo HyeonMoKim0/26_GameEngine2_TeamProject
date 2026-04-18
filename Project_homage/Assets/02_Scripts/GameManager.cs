@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject pauseScreen;
-    public TextMeshProUGUI lifeUI;
-    public TextMeshProUGUI roundUI;
+    public GameObject readyScreen;
+    public TextMeshProUGUI pauseLifeUI;
+    public TextMeshProUGUI pauseRoundUI;
+    public TextMeshProUGUI readyLifeUI;
+    public TextMeshProUGUI readyRoundUI;
 
     public int life = 4;
     public int totalRound = 0;
@@ -25,6 +28,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(pauseScreen);
+        DontDestroyOnLoad(readyScreen);
     }
 
     public void RoundStandby()
@@ -33,14 +37,16 @@ public class GameManager : MonoBehaviour
         ReloadUI();
 
         int randomRound = Random.Range(1, 4);
-        SceneManager.LoadScene("10_StandbyScene");
+        readyScreen.SetActive(true);
         StartCoroutine(LoadScene(randomRound));
     }
 
     IEnumerator LoadScene(int randomRound)
     {
-
         yield return new WaitForSeconds(5f);
+
+        readyScreen.SetActive(false);
+
         switch (randomRound)
         {
             case 1:
@@ -77,6 +83,7 @@ public class GameManager : MonoBehaviour
     public void failedGame()
     {
         life--;
+
         if (life > 0)
         {
             RoundStandby();
@@ -89,8 +96,10 @@ public class GameManager : MonoBehaviour
 
     private void ReloadUI()
     {
-        lifeUI.text = "Life: " + life;
-        roundUI.text = "Round: " + totalRound;
+        pauseLifeUI.text = "Life: " + life;
+        pauseRoundUI.text = "Round: " + totalRound;
+        readyLifeUI.text = "Life: " + life;
+        readyRoundUI.text = "Round: " + totalRound;
     }
 
     public void GameOver()

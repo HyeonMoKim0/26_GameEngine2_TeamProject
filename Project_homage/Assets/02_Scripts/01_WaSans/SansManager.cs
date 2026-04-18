@@ -51,15 +51,26 @@ public class SansManager : MonoBehaviour
                 {
                     currentTime = 0;
                     Debug.Log("Game Clear!");
+
+                    Invoke(nameof(Clear), 2f);
                 }
                 else if (gameOver) // 플레이어가 파괴되었을 때
                 {
-                    GameManager.instance.life--;
                     Debug.Log("Game Fail!");
-                }
 
-                Invoke(nameof(GameManager.instance.RoundStandby), 2f);
+                    Invoke(nameof(Fail), 2f);
+                }
             }
         }
+    }
+
+    void Clear()
+    {
+        GameManager.instance.RoundStandby();
+    }
+
+    void Fail()
+    {
+        GameManager.instance.failedGame();
     }
 }
