@@ -6,6 +6,7 @@ public class AcceptManager : MonoBehaviour
 {
     public static AcceptManager instance;
 
+    [Header("Game Settings")]
     public bool isGame;
     public bool agree;
     public bool disagree;
@@ -36,6 +37,7 @@ public class AcceptManager : MonoBehaviour
     {
         if (isGame)
         {
+            // 동의 버튼을 눌렀을 때 [Clear]
             if (agree)
             {
                 isGame = false;
@@ -43,7 +45,9 @@ public class AcceptManager : MonoBehaviour
 
                 Invoke(nameof(Clear), 2f);
             }
-            else if (disagree)
+            
+            // 비동의 버튼을 눌렀을 때 [Fail]
+            if (disagree)
             {
                 isGame = false;
                 Debug.Log("You disagreed!");

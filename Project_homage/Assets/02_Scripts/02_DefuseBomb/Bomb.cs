@@ -11,7 +11,7 @@ public class Bomb : MonoBehaviour
 {
     GameObject commandText;
 
-    int countWire = 2;
+    int countWire = 1;
     command trig;
 
     public enum wireType

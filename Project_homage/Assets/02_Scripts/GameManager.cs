@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [Header("Main UI")]
     public GameObject pauseScreen;
     public GameObject readyScreen;
     public TextMeshProUGUI pauseLifeUI;
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI readyLifeUI;
     public TextMeshProUGUI readyRoundUI;
 
+    [Header("Main Setting")]
     public int life = 4;
     public int totalRound = 0;
 

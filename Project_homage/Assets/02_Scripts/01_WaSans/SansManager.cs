@@ -8,6 +8,8 @@ public class SansManager : MonoBehaviour
 {
     public static SansManager Instance;
     public TextMeshProUGUI timeText;
+
+    [Header("Game Setting")]
     public float gameTime;
     public float currentTime;
     public bool isGame;
@@ -22,9 +24,9 @@ public class SansManager : MonoBehaviour
     void Start()
     {
         gameTime = 50;
+        currentTime = gameTime;
         isGame = true;
         gameOver = false;
-        currentTime = gameTime;
     }
 
     void UpdateTimerUI()
@@ -43,23 +45,24 @@ public class SansManager : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
             UpdateTimerUI();
-            if (currentTime < 0 || gameOver)
+
+            // 시간이 모두 흘렀을 때 [Clear]
+            if (currentTime < 0)
             {
                 isGame = false;
+                currentTime = 0;
+                Debug.Log("Game Clear!");
 
-                if (currentTime < 0) // 시간이 모두 흘렀을 때
-                {
-                    currentTime = 0;
-                    Debug.Log("Game Clear!");
+                Invoke(nameof(Clear), 2f);
+            }
 
-                    Invoke(nameof(Clear), 2f);
-                }
-                else if (gameOver) // 플레이어가 파괴되었을 때
-                {
-                    Debug.Log("Game Fail!");
+            // 플레이어가 파괴되었을 때 [Fail]
+            if (gameOver)
+            {
+                isGame = false;
+                Debug.Log("Game Fail!");
 
-                    Invoke(nameof(Fail), 2f);
-                }
+                Invoke(nameof(Fail), 2f);
             }
         }
     }

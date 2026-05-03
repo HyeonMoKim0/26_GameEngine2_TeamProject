@@ -6,42 +6,39 @@ using UnityEngine;
 public class TetrisManager : MonoBehaviour
 {
     [Header("Game Settings")]
-    public float baseLimitTime = 10f;
-    public float speedMultiplier = 1.0f; // 라운드에 따라 외부에서 조절 가능
+    public float gameTime = 10f;
+    private float currentTime;
+    private int clearedLines = 0;
+    public bool isGame = true;
 
     [Header("UI Reference")]
     public TextMeshProUGUI timerText;
 
-    private float currentTime;
-    public bool isGame = true;
-    private int clearedLines = 0;
 
     void Start()
     {
-        currentTime = baseLimitTime;
+        gameTime = 10f;
+        currentTime = gameTime;
     }
 
     void Update()
     {
-        if (!isGame) return;
-
-        // 배속 적용: 실제 흐르는 시간보다 multiplier만큼 더 빠르게 감소
-        currentTime -= Time.deltaTime * speedMultiplier;
-        timerText.text = $"Time: {Mathf.Max(0, currentTime):F2}s";
-
         if (isGame)
         {
+            // 4줄을 지웠을 때 [Clear]
             if (clearedLines >= 4)
             {
                 isGame = false;
-                Debug.Log("You agreed!");
+                Debug.Log("Tetris!!");
 
                 Invoke(nameof(Clear), 2f);
             }
-            else if (currentTime < 0)
+
+            // 제한 시간이 0이 되었을 때 [Fail]
+            if (currentTime < 0)
             {
                 isGame = false;
-                Debug.Log("You disagreed!");
+                Debug.Log("Time Over!!");
 
                 Invoke(nameof(Fail), 2f);
             }
