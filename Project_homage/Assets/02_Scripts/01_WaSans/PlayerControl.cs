@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -24,8 +22,10 @@ public class PlayerControl : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
-        move = transform.right * horizontalInput + transform.forward * verticalInput;
-        controller.Move(move * moveSpeed * Time.deltaTime);
+        if (SansManager.Instance.isGame)
+        {
+            move = transform.right * horizontalInput + transform.forward * verticalInput;
+            controller.Move(move * moveSpeed * Time.deltaTime);
+        }
     }
 }
