@@ -8,13 +8,16 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("Main UI")]
+    [Header("Pause UI")]
     public GameObject pauseScreen;
-    public GameObject readyScreen;
     public TextMeshProUGUI pauseLifeUI;
     public TextMeshProUGUI pauseRoundUI;
+
+    [Header("Ready UI")]
+    public GameObject readyScreen;
     public TextMeshProUGUI readyLifeUI;
     public TextMeshProUGUI readyRoundUI;
+    public Object[] howToPlaies;
 
     [Header("Main Setting")]
     public int life = 4;
@@ -46,6 +49,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator LoadScene(int randomRound)
     {
+        HowTo(randomRound);
         yield return new WaitForSeconds(5f);
 
         readyScreen.SetActive(false);
@@ -64,10 +68,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator HowTo(int randomRound)
+    void HowTo(int randomRound)
     {
-        yield return new WaitForSeconds(3f);
-
 
     }
 

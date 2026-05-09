@@ -9,6 +9,8 @@ public class ButtonPattern : MonoBehaviour
     private RectTransform agreeRect;
     private RectTransform disagreeRect;
 
+    public float gameTime;
+
     public float buttonRange = 200;
     public float moveSpeed = 960f;
 
@@ -20,6 +22,8 @@ public class ButtonPattern : MonoBehaviour
     {
         agreeRect = agreeButton.GetComponent<RectTransform>();
         disagreeRect = disagreeButton.GetComponent<RectTransform>();
+
+        gameTime = 5f;
 
         RandomAgree();
     }
@@ -40,8 +44,8 @@ public class ButtonPattern : MonoBehaviour
 
     Vector3 RandomPos()
     {
-        float randomX = Random.Range(-Screen.width / 2, Screen.width / 2);
-        float randomY = Random.Range(-Screen.height / 2, Screen.height / 2);
+        float randomX = Random.Range(150, 1770);
+        float randomY = Random.Range(60, 1020);
 
         return new Vector3(randomX, randomY, 0);
     }
@@ -57,9 +61,9 @@ public class ButtonPattern : MonoBehaviour
     void ButtonPattern2()
     {
         agreeButton.SetActive(true);
-        disagreeButton.SetActive(false);
-        agreeRect.position = new Vector3(-200, 200, 0);
-        disagreeRect.position = new Vector3(200, 200, 0);
+        disagreeButton.SetActive(true);
+        agreeRect.position = new Vector3(760, 200, 0);
+        disagreeRect.position = new Vector3(1160, 200, 0);
 
         isButtonPattern2 = true;
     }
@@ -75,24 +79,34 @@ public class ButtonPattern : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isButtonPattern1)
+        if (AcceptManager.instance.isGame)
         {
-            Vector3 mousePos = Input.mousePosition;
-            Vector3 buttonPos = agreeRect.position;
+            gameTime -= Time.deltaTime;
 
-            float distance = Vector3.Distance(mousePos, buttonPos);
-
-            if (distance < buttonRange)
+            if (isButtonPattern1)
             {
-                Vector3 awayDirection = (buttonPos - mousePos).normalized;
-                agreeRect.position += awayDirection * moveSpeed * Time.deltaTime;
-                KeepButtonInScreen();
-            }
-        }
+                Vector3 mousePos = Input.mousePosition;
+                Vector3 buttonPos = agreeRect.position;
 
-        if (isButtonPattern2)
-        {
-            disagreeRect.localScale += Vector3.one * Time.deltaTime;
+                float distance = Vector3.Distance(mousePos, buttonPos);
+
+                if (distance < buttonRange)
+                {
+                    Vector3 awayDirection = (buttonPos - mousePos).normalized;
+                    agreeRect.position += awayDirection * moveSpeed * Time.deltaTime;
+                    KeepButtonInScreen();
+                }
+            }
+
+            if (isButtonPattern2)
+            {
+                disagreeRect.localScale += Vector3.one * Time.deltaTime;
+            }
+
+            if (gameTime < 0)
+            {
+                AcceptManager.instance.Disagree();
+            }
         }
     }
 }
