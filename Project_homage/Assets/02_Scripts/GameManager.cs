@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject readyScreen;
     public TextMeshProUGUI readyLifeUI;
     public TextMeshProUGUI readyRoundUI;
-    public Object[] howToPlaies;
+    public GameObject[] howToPlaies;
 
     [Header("Main Setting")]
     public int life = 4;
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         HowTo(randomRound);
         yield return new WaitForSeconds(5f);
 
+        HowToOff();
         readyScreen.SetActive(false);
 
         switch (randomRound)
@@ -70,7 +71,24 @@ public class GameManager : MonoBehaviour
 
     void HowTo(int randomRound)
     {
+        switch (randomRound)
+        {
+            case 1:
+                howToPlaies[1].SetActive(true);
+                break;
+            case 2:
+            case 3:
+                howToPlaies[0].SetActive(true);
+                break;
+        }
+    }
 
+    void HowToOff()
+    {
+        foreach (GameObject howTo in howToPlaies)
+        {
+            howTo.SetActive(false);
+        }
     }
 
     public void PauseGame()

@@ -67,13 +67,21 @@ public class AcceptManager : MonoBehaviour
         }
     }
 
+    void ButtonOff()
+    {
+        ButtonPattern.instance.agreeButton.SetActive(false);
+        ButtonPattern.instance.disagreeButton.SetActive(false);
+    }
+
     void Clear()
     {
+        ButtonOff();
         GameManager.instance.RoundStandby();
     }
 
     void Fail()
     {
+        ButtonOff();
         GameManager.instance.failedGame();
     }
 }

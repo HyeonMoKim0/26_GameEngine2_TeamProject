@@ -16,8 +16,6 @@ public class BlasterSpawner : MonoBehaviour
     Vector3 spawnDir;
     Quaternion spawnRot;
 
-    public float currentTime;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +25,7 @@ public class BlasterSpawner : MonoBehaviour
 
     void RandomBlastPattern()
     {
-        int randomBlast = Random.Range(3, 4);
+        int randomBlast = Random.Range(1, 4);
         switch (randomBlast)
         {
             case 1:

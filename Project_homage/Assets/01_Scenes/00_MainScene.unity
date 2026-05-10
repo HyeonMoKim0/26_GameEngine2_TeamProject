@@ -337,48 +337,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4260557919540406597, guid: 3b824132855de984f9673d7600ebf665,
-        type: 3}
-      propertyPath: m_Name
-      value: Life Text
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260557919540406599, guid: 3b824132855de984f9673d7600ebf665,
-        type: 3}
-      propertyPath: m_text
-      value: 'Life : 4'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260557919540406599, guid: 3b824132855de984f9673d7600ebf665,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 54
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260557919540406599, guid: 3b824132855de984f9673d7600ebf665,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: fbb714aab58620e469fd7c635300853e,
-        type: 2}
-    - target: {fileID: 4260557919540406599, guid: 3b824132855de984f9673d7600ebf665,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 54
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260557919540406599, guid: 3b824132855de984f9673d7600ebf665,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 9184281379097884311, guid: fbb714aab58620e469fd7c635300853e,
-        type: 2}
-    - target: {fileID: 4260557919540406599, guid: 3b824132855de984f9673d7600ebf665,
-        type: 3}
-      propertyPath: m_TextStyleHashCode
-      value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260557919540406599, guid: 3b824132855de984f9673d7600ebf665,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -686,7 +644,9 @@ MonoBehaviour:
   readyScreen: {fileID: 787837659}
   readyLifeUI: {fileID: 135382596}
   readyRoundUI: {fileID: 1344370595}
-  howToPlaies: []
+  howToPlaies:
+  - {fileID: 1652085248}
+  - {fileID: 1540148993}
   life: 4
   totalRound: 0
 --- !u!4 &1241565176
@@ -712,26 +672,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 787837663}
     m_Modifications:
-    - target: {fileID: 5072044006983336104, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_Transition
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044006983336104, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_SpriteState.m_PressedSprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044006983336104, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_SpriteState.m_SelectedSprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044006983336104, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_SpriteState.m_HighlightedSprite
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5072044006983336105, guid: b3216a7ce7603e9469e58a83395ae948,
         type: 3}
       propertyPath: m_Pivot.x
@@ -837,58 +777,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Round UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5072044006983336106, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044007346101956, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_Name
-      value: Round Text
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044007346102010, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_text
-      value: QUEST #1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044007346102010, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044007346102010, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: fbb714aab58620e469fd7c635300853e,
-        type: 2}
-    - target: {fileID: 5072044007346102010, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044007346102010, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 9184281379097884311, guid: fbb714aab58620e469fd7c635300853e,
-        type: 2}
-    - target: {fileID: 5072044007346102010, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_TextStyleHashCode
-      value: -1183493901
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044007346102010, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5072044007346102011, guid: b3216a7ce7603e9469e58a83395ae948,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 320
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -912,6 +800,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1540148993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1908944054609199798, guid: a2c296748b8aa7f40b16a1b62db69e57,
+    type: 3}
+  m_PrefabInstance: {fileID: 5398996234819932287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1599952327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,6 +941,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1599952327}
   m_CullTransparentMesh: 1
+--- !u!1 &1652085248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3224185770320620370, guid: c788cfc3eb8cdb349ad1a5e57151ca9b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1774943481593662703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1739384313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,7 +975,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1771,11 +1671,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HowTo_Mouse
       objectReference: {fileID: 0}
-    - target: {fileID: 3224185770320620370, guid: c788cfc3eb8cdb349ad1a5e57151ca9b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4543700520256977654, guid: c788cfc3eb8cdb349ad1a5e57151ca9b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1905,11 +1800,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HowTo_KeyBoard
-      objectReference: {fileID: 0}
-    - target: {fileID: 1908944054609199798, guid: a2c296748b8aa7f40b16a1b62db69e57,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5579915933510121664, guid: a2c296748b8aa7f40b16a1b62db69e57,
         type: 3}

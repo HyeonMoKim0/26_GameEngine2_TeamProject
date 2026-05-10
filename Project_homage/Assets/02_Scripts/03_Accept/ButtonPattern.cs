@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class ButtonPattern : MonoBehaviour
 {
+    static public ButtonPattern instance;
+     void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public GameObject agreeButton;
     public GameObject disagreeButton;
     private RectTransform agreeRect;
