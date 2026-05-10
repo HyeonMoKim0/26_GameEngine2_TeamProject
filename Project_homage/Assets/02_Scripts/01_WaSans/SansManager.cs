@@ -10,7 +10,6 @@ public class SansManager : MonoBehaviour
     public TextMeshProUGUI timeText;
 
     [Header("Game Setting")]
-    public float gameTime;
     public float currentTime;
     public bool isGame;
     public bool gameOver;
@@ -23,8 +22,7 @@ public class SansManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameTime = 50;
-        currentTime = gameTime;
+        currentTime = 10f;
         isGame = true;
         gameOver = false;
     }
