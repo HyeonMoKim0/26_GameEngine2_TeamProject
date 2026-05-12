@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     [Header("Main Setting")]
     public int life = 4;
     public int totalRound = 0;
+    public float gameSpeed = 1f;
 
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
+
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(pauseScreen);
         DontDestroyOnLoad(readyScreen);
@@ -41,15 +44,17 @@ public class GameManager : MonoBehaviour
     {
         life = 4;
         totalRound = 0;
+        gameSpeed = 1f;
         RoundStandby();
     }
 
     public void RoundStandby()
     {
         totalRound++;
+        gameSpeed = 1f + (totalRound / 5) * 0.05f;
         ReloadUI();
 
-        int randomRound = Random.Range(1, 4);
+        int randomRound = UnityEngine.Random.Range(1, 4);
         readyScreen.SetActive(true);
         StartCoroutine(LoadScene(randomRound));
     }

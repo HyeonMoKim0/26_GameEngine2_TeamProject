@@ -48,7 +48,7 @@ public class BlasterSpawner : MonoBehaviour
 
     IEnumerator SpawnBlasterRoutine1()
     {
-        float spawnRate = 0.4f;
+        float spawnRate = 0.4f * (1 / GameManager.instance.gameSpeed);
         while (true)
         {
             SpawnBlaster1();
@@ -78,8 +78,8 @@ public class BlasterSpawner : MonoBehaviour
         Blaster blasterScript = newBlaster.GetComponent<Blaster>();
         if (blasterScript != null)
         {
-            blasterScript.blastStartTime = 0.5f;
-            blasterScript.removeTime = blasterScript.blastStartTime + 0.3f;
+            blasterScript.blastStartTime = 0.5f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.removeTime = blasterScript.blastStartTime + 0.3f * (1 / GameManager.instance.gameSpeed);
         }
     }
 
@@ -89,7 +89,7 @@ public class BlasterSpawner : MonoBehaviour
 
     IEnumerator SpawnBlasterRoutine2()
     {
-        float spawnRate = 0.07f;
+        float spawnRate = 0.07f * (1 / GameManager.instance.gameSpeed);
         while (true)
         {
             SpawnBlaster2();
@@ -119,8 +119,8 @@ public class BlasterSpawner : MonoBehaviour
         Blaster blasterScript = newBlaster.GetComponent<Blaster>();
         if (blasterScript != null)
         {
-            blasterScript.blastStartTime = 1f;
-            blasterScript.removeTime = blasterScript.blastStartTime + 0.2f;
+            blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
         }
     }
 
@@ -128,7 +128,7 @@ public class BlasterSpawner : MonoBehaviour
 
     IEnumerator SpawnBlasterRoutine3()
     {
-        float spawnRate = 0.65f;
+        float spawnRate = 0.65f * (1 / GameManager.instance.gameSpeed);
         while (spawnCount < 4)
         {
             spawnCount++;
@@ -178,8 +178,8 @@ public class BlasterSpawner : MonoBehaviour
                     Blaster blasterScript = newBlaster.GetComponent<Blaster>();
                     if (blasterScript != null)
                     {
-                        blasterScript.blastStartTime = 1f;
-                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f;
+                        blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
                     }
                 }
                 break;
@@ -213,8 +213,8 @@ public class BlasterSpawner : MonoBehaviour
                     Blaster blasterScript = newBlaster.GetComponent<Blaster>();
                     if (blasterScript != null)
                     {
-                        blasterScript.blastStartTime = 1f;
-                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f;
+                        blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
                     }
                 }
                 break;
@@ -246,8 +246,8 @@ public class BlasterSpawner : MonoBehaviour
                     Blaster blasterScript = newBlaster.GetComponent<Blaster>();
                     if (blasterScript != null)
                     {
-                        blasterScript.blastStartTime = 1f;
-                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f;
+                        blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
                     }
                 }
                 break;

@@ -31,7 +31,7 @@ public class SansManager : MonoBehaviour
         // 게임이 진행중일때 시간이 흐름 (플레이어가 파괴되었을 때 종료)
         if (isGame)
         {
-            currentTime -= Time.deltaTime;
+            currentTime -= Time.deltaTime * GameManager.instance.gameSpeed;
 
             // 시간이 모두 흘렀을 때 [Clear]
             if (currentTime < 0)

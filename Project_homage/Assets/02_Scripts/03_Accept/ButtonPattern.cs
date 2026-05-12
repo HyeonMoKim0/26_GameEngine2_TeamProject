@@ -94,7 +94,7 @@ public class ButtonPattern : MonoBehaviour
     {
         if (AcceptManager.instance.isGame)
         {
-            gameTime -= Time.deltaTime;
+            gameTime -= Time.deltaTime * GameManager.instance.gameSpeed;
 
             if (isButtonPattern1)
             {
@@ -106,14 +106,14 @@ public class ButtonPattern : MonoBehaviour
                 if (distance < buttonRange)
                 {
                     Vector3 awayDirection = (buttonPos - mousePos).normalized;
-                    agreeRect.position += awayDirection * moveSpeed * Time.deltaTime;
+                    agreeRect.position += awayDirection * moveSpeed * Time.deltaTime * GameManager.instance.gameSpeed;
                     KeepButtonInScreen();
                 }
             }
 
             if (isButtonPattern2)
             {
-                disagreeRect.localScale += Vector3.one * Time.deltaTime;
+                disagreeRect.localScale += Vector3.one * Time.deltaTime * GameManager.instance.gameSpeed;
             }
 
             if (gameTime < 0)
