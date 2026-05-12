@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 114
+  controlID: 40
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -395,21 +395,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6271ffff02c2ffffd4e2ffff04f9ffff42f9ffff2efbfffff4ffffff7a6b0000
+      m_ExpandedIDs: 28d2ffffecd8ffff58d9ffff7cdaffffd4daffff2cdbffff6adbffffc2dbffff30dcffff6cdcffffeadcffff26ddffff20deffff06dfffff40dfffff3cecffff3ef0ffff50f0ffff12f1ffff2efbfffff4ffffffd25d0000ec5d0000b665000000660000d46900009c700000ec740000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Game Manager
+        m_OriginalName: Game Manager
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -10130
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 6}
       m_SearchString: 
@@ -927,7 +927,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/03_Prefabs/01_WaSans
+    - Assets/01_Scenes
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -935,16 +935,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 55
   m_LastFolders:
-  - Assets/03_Prefabs/01_WaSans
+  - Assets/01_Scenes
   m_LastFoldersGridSize: 55
   m_LastProjectPath: C:\Github\26_GameEngine2_TeamProject\Project_homage
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 985f0000
-    m_LastClickedID: 24472
-    m_ExpandedIDs: 000000007e5f0000805f0000825f0000845f0000865f0000945f000000ca9a3b
+    m_SelectedIDs: 945f0000
+    m_LastClickedID: 24468
+    m_ExpandedIDs: 000000007e5f0000805f0000825f0000845f0000865f0000885f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -972,7 +972,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007e5f0000805f0000825f0000845f0000865f0000
+    m_ExpandedIDs: 000000007e5f0000805f0000825f0000845f0000865f0000885f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -27,17 +27,42 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
         {
             Destroy(gameObject);
             return;
         }
 
-        instance = this;
 
-        DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(pauseScreen);
         DontDestroyOnLoad(readyScreen);
+    }
+
+    private void OnEnable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        // 2. 새 씬에서 버튼을 찾아 다시 연결
+        GameObject btnObj = GameObject.Find("Start Button"); // 버튼 이름으로 찾기
+        if (btnObj != null)
+        {
+            var btn = btnObj.GetComponent<UnityEngine.UI.Button>();
+            btn.onClick.RemoveAllListeners(); // 중복 방지
+            btn.onClick.AddListener(StartGame); // 함수 연결
+        }
     }
 
     public void StartGame()

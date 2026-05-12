@@ -765,7 +765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC774\uC138\uACC4\uC5D0 \uB5A8\uC5B4\uC9C4\uB0B4\uAC00 \uC6A9\uC0AC\uAC00
+  m_text: "\uC774\uC138\uACC4\uC5D0 \uB5A8\uC5B4\uC9C4 \uB0B4\uAC00 \uC6A9\uC0AC\uAC00
     \uB418\uC5B4\n\uB9C8\uC744\uC744 \uAD6C\uD574\uC57C\uD55C\uB2E4\uACE0?"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fbb714aab58620e469fd7c635300853e, type: 2}
@@ -1669,6 +1669,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1241565175}
+    - target: {fileID: 7549562933024875632, guid: 6c1862e41fe2c3841b6a9e096c7daf03,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartGame
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
