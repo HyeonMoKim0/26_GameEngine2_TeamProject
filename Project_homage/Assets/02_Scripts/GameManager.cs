@@ -37,6 +37,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(readyScreen);
     }
 
+    public void StartGame()
+    {
+        life = 4;
+        totalRound = 0;
+        RoundStandby();
+    }
+
     public void RoundStandby()
     {
         totalRound++;

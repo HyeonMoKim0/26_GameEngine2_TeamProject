@@ -57,8 +57,8 @@ public class ButtonPattern : MonoBehaviour
 
     Vector3 RandomPos()
     {
-        float randomX = Random.Range(150, 1770);
-        float randomY = Random.Range(60, 1020);
+        float randomX = Random.Range(100, Screen.width-100);
+        float randomY = Random.Range(50, Screen.height-50);
 
         return new Vector3(randomX, randomY, 0);
     }
@@ -75,8 +75,8 @@ public class ButtonPattern : MonoBehaviour
     {
         agreeButton.SetActive(true);
         disagreeButton.SetActive(true);
-        agreeRect.position = new Vector3(760, 200, 0);
-        disagreeRect.position = new Vector3(1160, 200, 0);
+        agreeRect.position = new Vector3(Screen.width/32*13, Screen.height/5, 0);
+        disagreeRect.position = new Vector3(Screen.width/32*19, Screen.height/5, 0);
 
         isButtonPattern2 = true;
     }
