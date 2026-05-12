@@ -67,12 +67,20 @@ public class BlasterSpawner : MonoBehaviour
         spawnDir = player.transform.position - spawnPos;
         spawnRot = Quaternion.LookRotation(spawnDir);
 
+        // Instantiate Blaster
+        GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+        // Line Renderer Disenable
+        LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+        if (lr != null) lr.enabled = false;
+
         // Blast Start Time, Remove Time
-        blasterPrefab.GetComponent<Blaster>().blastStartTime = 0.5f;
-        blasterPrefab.GetComponent<Blaster>().removeTime
-            = blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.3f;
-        
-        Instantiate(blasterPrefab, spawnPos, spawnRot);
+        Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+        if (blasterScript != null)
+        {
+            blasterScript.blastStartTime = 0.5f;
+            blasterScript.removeTime = blasterScript.blastStartTime + 0.3f;
+        }
     }
 
     private float r = 9f;
@@ -100,11 +108,20 @@ public class BlasterSpawner : MonoBehaviour
         spawnDir = new Vector3(0, 2, 0) - spawnPos;
         spawnRot = Quaternion.LookRotation(spawnDir);
 
-        blasterPrefab.GetComponent<Blaster>().blastStartTime = 1f;
-        blasterPrefab.GetComponent<Blaster>().removeTime =
-            blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.2f;
+        // Instantiate Blaster
+        GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
 
-        Instantiate(blasterPrefab, spawnPos, spawnRot);
+        // Line Renderer Disenable
+        LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+        if (lr != null) lr.enabled = false;
+
+        // Blast Start Time, Remove Time
+        Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+        if (blasterScript != null)
+        {
+            blasterScript.blastStartTime = 1f;
+            blasterScript.removeTime = blasterScript.blastStartTime + 0.2f;
+        }
     }
 
     int spawnCount = 0;
@@ -123,11 +140,7 @@ public class BlasterSpawner : MonoBehaviour
 
     private void SpawnBlaster3(int count)
     {
-        // Blast Start Time, Remove Time
-        blasterPrefab.GetComponent<Blaster>().blastStartTime = 0.4f;
-        blasterPrefab.GetComponent<Blaster>().removeTime =
-            blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.25f;
-
+   
         switch (count)
         {
             case 1:
@@ -153,7 +166,21 @@ public class BlasterSpawner : MonoBehaviour
                 {
                     spawnPos = spawnPos_1[i];
                     spawnRot = Quaternion.LookRotation(spawnRot_1[i]);
-                    Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+                    // Instantiate Blaster
+                    GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+                    // Line Renderer Disenable
+                    LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+                    if (lr != null) lr.enabled = false;
+
+                    // Blast Start Time, Remove Time
+                    Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+                    if (blasterScript != null)
+                    {
+                        blasterScript.blastStartTime = 1f;
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f;
+                    }
                 }
                 break;
             case 2:
@@ -174,7 +201,21 @@ public class BlasterSpawner : MonoBehaviour
                 {
                     spawnPos = spawnPos_2[i];
                     spawnRot = Quaternion.LookRotation(spawnRot_2[i]);
-                    Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+                    // Instantiate Blaster
+                    GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+                    // Line Renderer Disenable
+                    LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+                    if (lr != null) lr.enabled = false;
+
+                    // Blast Start Time, Remove Time
+                    Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+                    if (blasterScript != null)
+                    {
+                        blasterScript.blastStartTime = 1f;
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f;
+                    }
                 }
                 break;
             case 4:
@@ -193,7 +234,21 @@ public class BlasterSpawner : MonoBehaviour
                 {
                     spawnPos = spawnPos_4[i];
                     spawnRot = Quaternion.LookRotation(spawnRot_4[i]);
-                    Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+                    // Instantiate Blaster
+                    GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+                    // Line Renderer Disenable
+                    LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+                    if (lr != null) lr.enabled = false;
+
+                    // Blast Start Time, Remove Time
+                    Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+                    if (blasterScript != null)
+                    {
+                        blasterScript.blastStartTime = 1f;
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f;
+                    }
                 }
                 break;
         }
