@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Blaster : MonoBehaviour
 {
+    [SerializeField] private LayerMask targetLayer; // 인스펙터에서 'Player'만 체크하세요.
     public LineRenderer lineRenderer;
     public float maxDistance;
     public float blastStartTime;
     public float removeTime;
+    public float laserWidth;
     bool isBlast = false;
 
     // Start is called before the first frame update
@@ -41,7 +44,7 @@ public class Blaster : MonoBehaviour
         if (isBlast)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit, maxDistance))
+            if (Physics.SphereCast(transform.position, laserWidth / 2, transform.forward, out hit, maxDistance, targetLayer))
             {
                 lineRenderer.SetPosition(1, hit.point);
 

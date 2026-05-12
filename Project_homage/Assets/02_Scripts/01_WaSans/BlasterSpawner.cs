@@ -70,16 +70,22 @@ public class BlasterSpawner : MonoBehaviour
         // Instantiate Blaster
         GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
 
-        // Line Renderer Disenable
+        // Line Renderer Disenable & Set Line Renderer Width
         LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
-        if (lr != null) lr.enabled = false;
+        if (lr != null)
+        {
+            lr.startWidth = 1.5f;
+            lr.endWidth = 1.5f;
+            lr.enabled = false;
+        }
 
-        // Blast Start Time, Remove Time
+        // Blast Start Time, Remove Time, Laser Width
         Blaster blasterScript = newBlaster.GetComponent<Blaster>();
         if (blasterScript != null)
         {
             blasterScript.blastStartTime = 0.5f * (1 / GameManager.instance.gameSpeed);
             blasterScript.removeTime = blasterScript.blastStartTime + 0.3f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.laserWidth = 1.5f;
         }
     }
 
@@ -111,16 +117,22 @@ public class BlasterSpawner : MonoBehaviour
         // Instantiate Blaster
         GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
 
-        // Line Renderer Disenable
+        // Line Renderer Disenable & Set Line Renderer Width
         LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
-        if (lr != null) lr.enabled = false;
+        if (lr != null)
+        {
+            lr.startWidth = 1.5f;
+            lr.endWidth = 1.5f;
+            lr.enabled = false;
+        }
 
-        // Blast Start Time, Remove Time
+        // Blast Start Time, Remove Time, Laser Width
         Blaster blasterScript = newBlaster.GetComponent<Blaster>();
         if (blasterScript != null)
         {
             blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
             blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.laserWidth = 1.5f;
         }
     }
 
@@ -170,16 +182,22 @@ public class BlasterSpawner : MonoBehaviour
                     // Instantiate Blaster
                     GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
 
-                    // Line Renderer Disenable
+                    // Line Renderer Disenable & Set Line Renderer Width
                     LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
-                    if (lr != null) lr.enabled = false;
+                    if (lr != null)
+                    {
+                        lr.startWidth = 4f;
+                        lr.endWidth = 4f;
+                        lr.enabled = false;
+                    }
 
-                    // Blast Start Time, Remove Time
+                    // Blast Start Time, Remove Time, Laser Width
                     Blaster blasterScript = newBlaster.GetComponent<Blaster>();
                     if (blasterScript != null)
                     {
-                        blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
-                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.blastStartTime = 0.4f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.25f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.laserWidth = 4f;
                     }
                 }
                 break;
@@ -205,16 +223,22 @@ public class BlasterSpawner : MonoBehaviour
                     // Instantiate Blaster
                     GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
 
-                    // Line Renderer Disenable
+                    // Line Renderer Disenable & Set Line Renderer Width
                     LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
-                    if (lr != null) lr.enabled = false;
+                    if (lr != null)
+                    {
+                        lr.startWidth = 4f;
+                        lr.endWidth = 4f;
+                        lr.enabled = false;
+                    }
 
-                    // Blast Start Time, Remove Time
+                    // Blast Start Time, Remove Time, Laser Width
                     Blaster blasterScript = newBlaster.GetComponent<Blaster>();
                     if (blasterScript != null)
                     {
-                        blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
-                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.blastStartTime = 0.4f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.25f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.laserWidth = 4f;
                     }
                 }
                 break;
@@ -238,16 +262,22 @@ public class BlasterSpawner : MonoBehaviour
                     // Instantiate Blaster
                     GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
 
-                    // Line Renderer Disenable
+                    // Line Renderer Disenable & Set Line Renderer Width
                     LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
-                    if (lr != null) lr.enabled = false;
+                    if (lr != null)
+                    {
+                        lr.startWidth = 10f;
+                        lr.endWidth = 10f;
+                        lr.enabled = false;
+                    }
 
-                    // Blast Start Time, Remove Time
+                    // Blast Start Time, Remove Time, 
                     Blaster blasterScript = newBlaster.GetComponent<Blaster>();
                     if (blasterScript != null)
                     {
-                        blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
-                        blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.blastStartTime = 0.4f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.25f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.laserWidth = 10f;
                     }
                 }
                 break;
