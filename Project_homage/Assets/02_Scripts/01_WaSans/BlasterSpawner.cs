@@ -83,13 +83,15 @@ public class BlasterSpawner : MonoBehaviour
         Blaster blasterScript = newBlaster.GetComponent<Blaster>();
         if (blasterScript != null)
         {
-            blasterScript.blastStartTime = 0.5f * (1 / GameManager.instance.gameSpeed);
+            //blasterScript.blastStartTime = 0.5f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.blastStartTime = 1.5f * (1 / GameManager.instance.gameSpeed);
+            //blasterScript.removeTime = blasterScript.blastStartTime + 0.3f * (1 / GameManager.instance.gameSpeed);
             blasterScript.removeTime = blasterScript.blastStartTime + 0.3f * (1 / GameManager.instance.gameSpeed);
-            blasterScript.laserWidth = 1.5f;
+            blasterScript.laserWidth = 1.25f;    // 실제 공격 판정 길이
         }
     }
 
-    private float r = 9f;
+    private float r = 13f;
     private float currentAngle = 0f; // 현재 각도
     private float angleStep = 18f;   // 한 번에 회전할 각도 (조정 가능)
 
@@ -130,7 +132,8 @@ public class BlasterSpawner : MonoBehaviour
         Blaster blasterScript = newBlaster.GetComponent<Blaster>();
         if (blasterScript != null)
         {
-            blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
+            //blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.blastStartTime = 1.25f * (1 / GameManager.instance.gameSpeed);
             blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
             blasterScript.laserWidth = 1.5f;
         }
