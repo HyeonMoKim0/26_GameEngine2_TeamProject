@@ -9,8 +9,8 @@ public class BlasterSpawner : MonoBehaviour
     private GameObject player;
     private Coroutine patternCoroutine;
 
-    private float xRange = 25;
-    private float zRange = 10;
+    private float xRange = 15;
+    private float zRange = 15;
 
     Vector3 spawnPos;
     Vector3 spawnDir;
@@ -20,32 +20,35 @@ public class BlasterSpawner : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        // 생성 패턴을 랜덤으로 호출하도록
-        // 패턴이 종료되었을 때 ?초의 대기시간 후 다시 랜덤 패턴 실행
         RandomBlastPattern();
     }
 
     void RandomBlastPattern()
     {
-        int randomBlast = Random.Range(1, 3);
+        int randomBlast = Random.Range(1, 4);
         switch (randomBlast)
         {
             case 1:
                 patternCoroutine =
                     StartCoroutine(SpawnBlasterRoutine1());
-                Invoke(nameof(StopPattern), 7f);
+                SansManager.Instance.currentTime = 8f;
                 break;
             case 2:
                 patternCoroutine =
                     StartCoroutine(SpawnBlasterRoutine2());
-                Invoke(nameof(StopPattern), 9f);
+                SansManager.Instance.currentTime = 10f;
+                break;
+            case 3:
+                patternCoroutine =
+                    StartCoroutine(SpawnBlasterRoutine3());
+                SansManager.Instance.currentTime = 4f;
                 break;
         }
     }
 
     IEnumerator SpawnBlasterRoutine1()
     {
-        float spawnRate = 0.4f;
+        float spawnRate = 0.4f * (1 / GameManager.instance.gameSpeed);
         while (true)
         {
             SpawnBlaster1();
@@ -64,27 +67,42 @@ public class BlasterSpawner : MonoBehaviour
         spawnDir = player.transform.position - spawnPos;
         spawnRot = Quaternion.LookRotation(spawnDir);
 
-        // Blast Start Time, Remove Time
-        blasterPrefab.GetComponent<Blaster>().blastStartTime = 0.5f;
-        blasterPrefab.GetComponent<Blaster>().removeTime
-            = blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.3f;
-        
-        Instantiate(blasterPrefab, spawnPos, spawnRot);
+        // Instantiate Blaster
+        GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+        // Line Renderer Disenable & Set Line Renderer Width
+        LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+        if (lr != null)
+        {
+            lr.startWidth = 1.5f;
+            lr.endWidth = 1.5f;
+            lr.enabled = false;
+        }
+
+        // Blast Start Time, Remove Time, Laser Width
+        Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+        if (blasterScript != null)
+        {
+            blasterScript.blastStartTime = 0.5f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.removeTime = blasterScript.blastStartTime + 0.3f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.laserWidth = 1.5f;
+        }
     }
 
-    private float r = 10f;
+    private float r = 9f;
     private float currentAngle = 0f; // 현재 각도
     private float angleStep = 18f;   // 한 번에 회전할 각도 (조정 가능)
 
     IEnumerator SpawnBlasterRoutine2()
     {
+        float spawnRate = 0.07f * (1 / GameManager.instance.gameSpeed);
         while (true)
         {
             SpawnBlaster2();
             // 각도를 증가시켜 반시계 방향으로 회전 (각도가 커질수록 Sin은 양수가 되어 +X로 이동)
             currentAngle += angleStep;
 
-            yield return new WaitForSeconds(0.07f);
+            yield return new WaitForSeconds(spawnRate);
         }
     }
 
@@ -96,23 +114,174 @@ public class BlasterSpawner : MonoBehaviour
         spawnDir = new Vector3(0, 2, 0) - spawnPos;
         spawnRot = Quaternion.LookRotation(spawnDir);
 
-        blasterPrefab.GetComponent<Blaster>().blastStartTime = 1f;
-        blasterPrefab.GetComponent<Blaster>().removeTime =
-            blasterPrefab.GetComponent<Blaster>().blastStartTime + 0.2f;
+        // Instantiate Blaster
+        GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
 
-        Instantiate(blasterPrefab, spawnPos, spawnRot);
-    }
-
-    void StopPattern()
-    {
-        if (patternCoroutine != null)
+        // Line Renderer Disenable & Set Line Renderer Width
+        LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+        if (lr != null)
         {
-            StopCoroutine(patternCoroutine);
-            patternCoroutine = null;
+            lr.startWidth = 1.5f;
+            lr.endWidth = 1.5f;
+            lr.enabled = false;
         }
 
-        // 패턴 종료 1초 후 랜덤 패턴 실행
-        Invoke(nameof(RandomBlastPattern), 1f);
+        // Blast Start Time, Remove Time, Laser Width
+        Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+        if (blasterScript != null)
+        {
+            blasterScript.blastStartTime = 1f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.removeTime = blasterScript.blastStartTime + 0.2f * (1 / GameManager.instance.gameSpeed);
+            blasterScript.laserWidth = 1.5f;
+        }
+    }
+
+    int spawnCount = 0;
+
+    IEnumerator SpawnBlasterRoutine3()
+    {
+        float spawnRate = 0.65f * (1 / GameManager.instance.gameSpeed);
+        while (spawnCount < 4)
+        {
+            spawnCount++;
+            SpawnBlaster3(spawnCount);
+
+            yield return new WaitForSeconds(spawnRate);
+        }
+    }
+
+    private void SpawnBlaster3(int count)
+    {
+   
+        switch (count)
+        {
+            case 1:
+            case 3:
+                // Spawn Position, Direction, Rotation
+                Vector3[] spawnPos_1 =
+                {
+                    new Vector3(-12, 2, 14),
+                    new Vector3(-14, 2, 12),
+                    new Vector3(14, 2, -12),
+                    new Vector3(12, 2, -14),
+                };
+
+                Vector3[] spawnRot_1 =
+                {
+                    Vector3.back,
+                    Vector3.right,
+                    Vector3.left,
+                    Vector3.forward
+                };
+
+                for (int i = 0; i < 4; i++)
+                {
+                    spawnPos = spawnPos_1[i];
+                    spawnRot = Quaternion.LookRotation(spawnRot_1[i]);
+
+                    // Instantiate Blaster
+                    GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+                    // Line Renderer Disenable & Set Line Renderer Width
+                    LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+                    if (lr != null)
+                    {
+                        lr.startWidth = 4f;
+                        lr.endWidth = 4f;
+                        lr.enabled = false;
+                    }
+
+                    // Blast Start Time, Remove Time, Laser Width
+                    Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+                    if (blasterScript != null)
+                    {
+                        blasterScript.blastStartTime = 0.4f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.25f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.laserWidth = 4f;
+                    }
+                }
+                break;
+            case 2:
+                // Spawn Position, Direction, Rotation
+                Vector3[] spawnPos_2 =
+                {
+                    new Vector3 (-14, 2, 14),
+                    new Vector3 (14, 2, 14)
+                };
+
+                Vector3[] spawnRot_2 =
+                {
+                    new Vector3(1, 0, -1),
+                    new Vector3(-1, 0, -1)
+                };
+
+                for (int i = 0; i < 2; i++)
+                {
+                    spawnPos = spawnPos_2[i];
+                    spawnRot = Quaternion.LookRotation(spawnRot_2[i]);
+
+                    // Instantiate Blaster
+                    GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+                    // Line Renderer Disenable & Set Line Renderer Width
+                    LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+                    if (lr != null)
+                    {
+                        lr.startWidth = 4f;
+                        lr.endWidth = 4f;
+                        lr.enabled = false;
+                    }
+
+                    // Blast Start Time, Remove Time, Laser Width
+                    Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+                    if (blasterScript != null)
+                    {
+                        blasterScript.blastStartTime = 0.4f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.25f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.laserWidth = 4f;
+                    }
+                }
+                break;
+            case 4:
+                // Spawn Position, Direction, Rotation
+                Vector3[] spawnPos_4 =
+                {
+                    new Vector3(-14, 2, 0),
+                    new Vector3(14, 2, 0)
+                };
+                Vector3[] spawnRot_4 =
+                {
+                    Vector3.right,
+                    Vector3.left
+                };
+                for (int i = 0; i < 2; i++)
+                {
+                    spawnPos = spawnPos_4[i];
+                    spawnRot = Quaternion.LookRotation(spawnRot_4[i]);
+
+                    // Instantiate Blaster
+                    GameObject newBlaster = Instantiate(blasterPrefab, spawnPos, spawnRot);
+
+                    // Line Renderer Disenable & Set Line Renderer Width
+                    LineRenderer lr = newBlaster.GetComponentInChildren<LineRenderer>();
+                    if (lr != null)
+                    {
+                        lr.startWidth = 10f;
+                        lr.endWidth = 10f;
+                        lr.enabled = false;
+                    }
+
+                    // Blast Start Time, Remove Time, 
+                    Blaster blasterScript = newBlaster.GetComponent<Blaster>();
+                    if (blasterScript != null)
+                    {
+                        blasterScript.blastStartTime = 0.4f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.removeTime = blasterScript.blastStartTime + 0.25f * (1 / GameManager.instance.gameSpeed);
+                        blasterScript.laserWidth = 10f;
+                    }
+                }
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -120,7 +289,7 @@ public class BlasterSpawner : MonoBehaviour
     {
         if (!SansManager.Instance.isGame)
         {
-            StopAllCoroutines();
+            StopCoroutine(patternCoroutine);
         }
     }
 }

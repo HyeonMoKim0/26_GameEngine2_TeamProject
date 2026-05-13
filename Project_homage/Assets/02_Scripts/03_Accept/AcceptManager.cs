@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AcceptManager : MonoBehaviour
@@ -11,6 +13,10 @@ public class AcceptManager : MonoBehaviour
     public bool agree;
     public bool disagree;
 
+    [Header("UI Settings")]
+    public GameObject agreeText;
+    public GameObject disagreeText;
+
     private void Awake()
     {
         instance = this;
@@ -20,16 +26,20 @@ public class AcceptManager : MonoBehaviour
     void Start()
     {
         isGame = true;
+        agreeText.SetActive(false);
+        disagreeText.SetActive(false);
     }
 
     public void Agree()
     {
         agree = true;
+        agreeText.SetActive(true);
     }
 
     public void Disagree()
     {
         disagree = true;
+        disagreeText.SetActive(true);
     }
 
     // Update is called once per frame
@@ -57,13 +67,21 @@ public class AcceptManager : MonoBehaviour
         }
     }
 
+    void ButtonOff()
+    {
+        ButtonPattern.instance.agreeButton.SetActive(false);
+        ButtonPattern.instance.disagreeButton.SetActive(false);
+    }
+
     void Clear()
     {
+        ButtonOff();
         GameManager.instance.RoundStandby();
     }
 
     void Fail()
     {
+        ButtonOff();
         GameManager.instance.failedGame();
     }
 }

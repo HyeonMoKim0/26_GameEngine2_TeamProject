@@ -36,7 +36,7 @@ public class BombManager : MonoBehaviour
     {
         if (isGame)
         {
-            currentTime -= Time.deltaTime;
+            currentTime -= Time.deltaTime * GameManager.instance.gameSpeed;
 
             // 폭탄이 해체되었을 때 [Clear]
             if (defused)

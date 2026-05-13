@@ -12,7 +12,7 @@ public class BombCommandUI : MonoBehaviour
     {
         commandUI = GetComponent<TextMeshProUGUI>();
 
-        Invoke(nameof(DisenableUI), 3f);
+        Invoke(nameof(DisenableUI), 3f * (1 / GameManager.instance.gameSpeed));
     }
 
     void DisenableUI()
