@@ -43,28 +43,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(readyScreen);
     }
 
-    private void OnEnable()
-    {
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
-    {
-        // 2. 새 씬에서 버튼을 찾아 다시 연결
-        GameObject btnObj = GameObject.Find("Start Button"); // 버튼 이름으로 찾기
-        if (btnObj != null)
-        {
-            var btn = btnObj.GetComponent<UnityEngine.UI.Button>();
-            btn.onClick.RemoveAllListeners(); // 중복 방지
-            btn.onClick.AddListener(StartGame); // 함수 연결
-        }
-    }
-
     public void StartGame()
     {
         life = 4;
@@ -176,7 +154,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (life > 0 && Input.GetKeyDown(KeyCode.Escape))
         {
             if (pauseScreen.activeSelf)
             {
