@@ -57,9 +57,9 @@ public class GameManager : MonoBehaviour
         gameSpeed = 1f + (totalRound / 5) * 0.05f;
         ReloadUI();
 
-        int randomRound = UnityEngine.Random.Range(1, 4);
+        int randomRound = UnityEngine.Random.Range(1, 5);
         readyScreen.SetActive(true);
-        StartCoroutine(LoadScene(randomRound));
+        StartCoroutine(LoadScene(4));
     }
 
     IEnumerator LoadScene(int randomRound)
@@ -80,6 +80,9 @@ public class GameManager : MonoBehaviour
                 break;
             case 3:
                 SceneManager.LoadScene("03_Accept");
+                break;
+            case 4:
+                SceneManager.LoadScene("05_Rhythm");
                 break;
         }
     }
