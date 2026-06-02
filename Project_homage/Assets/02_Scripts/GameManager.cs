@@ -57,9 +57,9 @@ public class GameManager : MonoBehaviour
         gameSpeed = 1f + (totalRound / 5) * 0.05f;
         ReloadUI();
 
-        int randomRound = UnityEngine.Random.Range(1, 5);
+        int randomRound = UnityEngine.Random.Range(1, 6);
         readyScreen.SetActive(true);
-        StartCoroutine(LoadScene(4));
+        StartCoroutine(LoadScene(randomRound));
     }
 
     IEnumerator LoadScene(int randomRound)
@@ -82,6 +82,9 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("03_Accept");
                 break;
             case 4:
+                SceneManager.LoadScene("04_Tetris");
+                break;
+            case 5:
                 SceneManager.LoadScene("05_Rhythm");
                 break;
         }
@@ -92,6 +95,7 @@ public class GameManager : MonoBehaviour
         switch (randomRound)
         {
             case 1:
+            case 4:
                 howToPlaies[1].SetActive(true);
                 break;
             case 2:
