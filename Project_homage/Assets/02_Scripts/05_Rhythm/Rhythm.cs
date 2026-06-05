@@ -173,7 +173,6 @@ public class Rhythm : MonoBehaviour
                 Debug.Log($"<color=red>[Game Over]</color> 너무 느림! 오차: {timeDiffInMs:F1} ms");
 
             RhythmManager.Instance.gameOver = true;
-            RhythmManager.Instance.isGame = false;
             bgmSource.Stop();
             return;
         }
@@ -194,7 +193,6 @@ public class Rhythm : MonoBehaviour
 
         if (currentTileIndex >= mapTiles.Count)
         {
-            // ... 클리어 로직 동일 ...
             return;
         }
 

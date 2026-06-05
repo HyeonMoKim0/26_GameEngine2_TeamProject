@@ -102,6 +102,9 @@ public class GameManager : MonoBehaviour
             case 3:
                 howToPlaies[0].SetActive(true);
                 break;
+            case 5:
+                howToPlaies[2].SetActive(true);
+                break;
         }
     }
 
