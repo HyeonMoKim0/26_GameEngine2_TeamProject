@@ -13,6 +13,9 @@ public class SansManager : MonoBehaviour
     public bool isGame;
     public bool gameOver;
 
+    [Header("Sound Setting")]
+    public AudioSource bgm;
+
     void Awake()
     {
         Instance = this;
@@ -24,6 +27,7 @@ public class SansManager : MonoBehaviour
         currentTime = 1.1f;
         isGame = true;
         gameOver = false;
+        bgm.Play();
     }
 
     // Update is called once per frame
@@ -57,11 +61,13 @@ public class SansManager : MonoBehaviour
 
     void Clear()
     {
+        bgm.Stop();
         GameManager.instance.RoundStandby();
     }
 
     void Fail()
     {
+        bgm.Stop();
         GameManager.instance.failedGame();
     }
 }

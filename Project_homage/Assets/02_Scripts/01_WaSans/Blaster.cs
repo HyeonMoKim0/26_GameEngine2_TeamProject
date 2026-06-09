@@ -13,9 +13,15 @@ public class Blaster : MonoBehaviour
     public float laserWidth;
     bool isBlast = false;
 
+    [Header("Sounds")]
+    public AudioSource spawnBlasterSound;
+    public AudioSource laserSound;
+    public AudioSource hitSound;
+
     // Start is called before the first frame update
     void Start()
     {
+        spawnBlasterSound.Play();
         lineRenderer = GetComponent<LineRenderer>();
         StartCoroutine(Blast(blastStartTime));
         StartCoroutine(DestroyBlaster(removeTime));
@@ -29,6 +35,7 @@ public class Blaster : MonoBehaviour
         lineRenderer.enabled = true;
 
         isBlast = true;
+        laserSound.Play();
     }
 
     IEnumerator DestroyBlaster(float removeTime) // Blaster 자동 제거
@@ -52,6 +59,7 @@ public class Blaster : MonoBehaviour
                 {
                     Debug.Log("적중!");
                     Destroy(hit.collider.gameObject);
+                    hitSound.Play();
                     SansManager.Instance.gameOver = true;
                 }
             }
