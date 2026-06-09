@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         gameSpeed = 1f + (totalRound / 5) * 0.05f;
         ReloadUI();
 
-        int randomRound = UnityEngine.Random.Range(1, 6);
+        int randomRound = UnityEngine.Random.Range(1, 7);
         readyScreen.SetActive(true);
         StartCoroutine(LoadScene(randomRound));
     }
@@ -87,6 +87,9 @@ public class GameManager : MonoBehaviour
             case 5:
                 SceneManager.LoadScene("05_Rhythm");
                 break;
+            case 6:
+                SceneManager.LoadScene("06_Fruit");
+                break;
         }
     }
 
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
                 break;
             case 2:
             case 3:
+            case 6:
                 howToPlaies[0].SetActive(true);
                 break;
             case 5:
