@@ -60,6 +60,9 @@ public class Brick : MonoBehaviour
             transform.position -= Vector3.down; // 원래 정수 위치로 복구
             isMoving = false; // 이 블록은 이제 조작 끝
 
+            // 배치 효과음 재생
+            TetrisSound.instance.placementSound.Play();
+
             // 데이터 등록 및 라인 클리어
             BoardData.AddToGrid(transform);       // 가상 지도 배열에 나를 박아넣음
             BoardData.CheckLines();              // 꽉 찬 줄이 있으면 터트리고 당기기

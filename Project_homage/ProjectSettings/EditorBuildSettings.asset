@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/01_Scenes/02_DefuseBomb.unity
     guid: 9fd4f756e8afbf44385aec9bbfcd2a49
   - enabled: 1
-    path: Assets/01_Scenes/03_Accept.unity
+    path: Assets/01_Scenes/03_Agree.unity
     guid: f5db856df0e552d42ac2fabb48f708d1
   - enabled: 1
     path: Assets/01_Scenes/04_Tetris.unity

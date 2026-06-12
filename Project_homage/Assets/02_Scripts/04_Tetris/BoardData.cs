@@ -125,6 +125,9 @@ public class BoardData : MonoBehaviour
                 grid[x, y] = null; // 데이터 비우기
             }
         }
+
+        // 효과음 재생
+        TetrisSound.instance.completeSound.Play();
     }
 
     // 지정한 행(Y) 위의 모든 블록들을 한 칸 아래로 내림
