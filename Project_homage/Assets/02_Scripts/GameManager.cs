@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("02_DefuseBomb");
                 break;
             case 3:
-                SceneManager.LoadScene("03_Accept");
+                SceneManager.LoadScene("03_Agree");
                 break;
             case 4:
                 SceneManager.LoadScene("04_Tetris");

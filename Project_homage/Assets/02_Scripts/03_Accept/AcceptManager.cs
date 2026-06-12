@@ -9,8 +9,7 @@ public class AcceptManager : MonoBehaviour
     public static AcceptManager instance;
 
     [Header("Game Settings")]
-    float currentTime;
-    float agreeTime = 5f;
+    public float currentTime = 1f;
     public bool isGame;
     public bool agree;
     public bool disagree;
@@ -28,23 +27,6 @@ public class AcceptManager : MonoBehaviour
     void Start()
     {
         isGame = true;
-        currentTime = agreeTime;
-        agreeText.SetActive(false);
-        disagreeText.SetActive(false);
-    }
-
-    public void Agree()
-    {
-        agree = true;
-        AcceptSound.instance.agreeSFX.Play();
-        agreeText.SetActive(true);
-    }
-
-    public void Disagree()
-    {
-        disagree = true;
-        AcceptSound.instance.disagreeSFX.Play();
-        disagreeText.SetActive(true);
     }
 
     // Update is called once per frame
@@ -74,26 +56,20 @@ public class AcceptManager : MonoBehaviour
             if (currentTime < 0)
             {
                 currentTime = 0;
-                Disagree();
+                disagree = true;
+                AcceptSound.instance.disagreeSFX.Play();
+                disagreeText.SetActive(true);
             }
         }
     }
 
-    void ButtonOff()
-    {
-        ButtonPattern.instance.agreeButton.SetActive(false);
-        ButtonPattern.instance.disagreeButton.SetActive(false);
-    }
-
     void Clear()
     {
-        ButtonOff();
         GameManager.instance.RoundStandby();
     }
 
     void Fail()
     {
-        ButtonOff();
         GameManager.instance.failedGame();
     }
 }
