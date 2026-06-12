@@ -23,21 +23,25 @@ public class BombLine : MonoBehaviour
     public void OnClickRedButton()
     {
         b.DefuseBomb(wireType.Red);
+        BomBSound.instance.PlayCutSFX();
     }
 
     public void OnClickYellowButton()
     {
         b.DefuseBomb(wireType.Yellow);
+        BomBSound.instance.PlayCutSFX();
     }
 
     public void OnClickGreenButton()
     {
         b.DefuseBomb(wireType.Green);
+        BomBSound.instance.PlayCutSFX();
     }
 
     public void OnClickBlueButton()
     {
         b.DefuseBomb(wireType.Blue);
+        BomBSound.instance.PlayCutSFX();
     }
 
     // Update is called once per frame

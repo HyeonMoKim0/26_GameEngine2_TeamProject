@@ -9,6 +9,8 @@ public class AcceptManager : MonoBehaviour
     public static AcceptManager instance;
 
     [Header("Game Settings")]
+    float currentTime;
+    float agreeTime = 5f;
     public bool isGame;
     public bool agree;
     public bool disagree;
@@ -26,6 +28,7 @@ public class AcceptManager : MonoBehaviour
     void Start()
     {
         isGame = true;
+        currentTime = agreeTime;
         agreeText.SetActive(false);
         disagreeText.SetActive(false);
     }
@@ -33,12 +36,14 @@ public class AcceptManager : MonoBehaviour
     public void Agree()
     {
         agree = true;
+        AcceptSound.instance.agreeSFX.Play();
         agreeText.SetActive(true);
     }
 
     public void Disagree()
     {
         disagree = true;
+        AcceptSound.instance.disagreeSFX.Play();
         disagreeText.SetActive(true);
     }
 
@@ -47,6 +52,7 @@ public class AcceptManager : MonoBehaviour
     {
         if (isGame)
         {
+            currentTime -= Time.deltaTime * GameManager.instance.gameSpeed;
             // 동의 버튼을 눌렀을 때 [Clear]
             if (agree)
             {
@@ -63,6 +69,12 @@ public class AcceptManager : MonoBehaviour
                 Debug.Log("You disagreed!");
 
                 Invoke(nameof(Fail), 2f);
+            }
+
+            if (currentTime < 0)
+            {
+                currentTime = 0;
+                Disagree();
             }
         }
     }

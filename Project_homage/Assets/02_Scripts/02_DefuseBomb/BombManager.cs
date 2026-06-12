@@ -42,7 +42,9 @@ public class BombManager : MonoBehaviour
             if (defused)
             {
                 isGame = false;
+
                 Debug.Log("Bomb Defused! Game Clear!");
+                BomBSound.instance.PlayDefuseSFX();
 
                 Invoke(nameof(Clear), 2f);
             }
@@ -54,6 +56,7 @@ public class BombManager : MonoBehaviour
                 currentTime = 0;
 
                 Debug.Log("Time Over! BOOM!!");
+                BomBSound.instance.PlayExplodeSFX();
 
                 Invoke(nameof(Fail), 2f);
             }
@@ -61,7 +64,9 @@ public class BombManager : MonoBehaviour
             if (wrong) // 잘못된 와이어를 눌렀을 때
             {
                 isGame = false;
+
                 Debug.Log("Wrong Wire! BOOM!!");
+                BomBSound.instance.PlayExplodeSFX();
 
                 Invoke(nameof(Fail), 2f);
             }
