@@ -58,7 +58,7 @@ public class Rhythm : MonoBehaviour
 
             // 시계 방향으로 회전하며 왼쪽에서 오른쪽으로 안착하려면, 
             // 시작 각도는 첫 목표 각도보다 정확히 180도 '앞선(큰)' 위치여야 합니다.
-            lastPivotAngle = firstTargetAngle + 180f;
+            lastPivotAngle = firstTargetAngle;
 
             // 0번 타일의 내부 각도 데이터도 이 흐름에 맞게 "먼저" 정렬해 줍니다.
             mapTiles[0].targetAngle = lastPivotAngle;
@@ -79,10 +79,11 @@ public class Rhythm : MonoBehaviour
         float secondsPerBeat = 60f / bpm;
         rotationSpeed = 180f / secondsPerBeat;
 
-        // 이제 완벽히 정렬된 타일 각도로 정박 초를 계산하므로 싱크가 소수점까지 맞아떨어집니다.
-        CalculateTileTargetTimes(secondsPerBeat);
+        // ★ [수정] 박자 계산 함수에 메트로놈 4박자(1마디) 시간 값을 함께 넘겨줍니다.
+        float fourBeatsDuration = secondsPerBeat * 3f;
+        CalculateTileTargetTimes(secondsPerBeat, fourBeatsDuration);
 
-        // 4. 첫 출발 상태 및 오디오 예약 초기화
+        // 4. 첫 출발 상태 및 오디오 예약 초기화 (음악은 예전처럼 1초 뒤 곧바로 켜집니다!)
         isClockwise = true;
         musicStartTime = AudioSettings.dspTime + 1.0f;
         lastPivotTargetTime = 0f;
@@ -91,10 +92,11 @@ public class Rhythm : MonoBehaviour
         bgmSource.PlayScheduled(musicStartTime);
     }
 
-    void CalculateTileTargetTimes(float secondsPerBeat)
+    void CalculateTileTargetTimes(float secondsPerBeat, float preCountTime)
     {
-        double accumulatedTime = 0;
-        if (mapTiles.Count > 0) mapTiles[0].targetTime = 0;
+        // 첫 번째 타일(0번)의 목표 정박 시간은 음악이 켜지고 정확히 '4박자 뒤'여야 합니다.
+        double accumulatedTime = preCountTime;
+        if (mapTiles.Count > 0) mapTiles[0].targetTime = accumulatedTime;
 
         for (int i = 1; i < mapTiles.Count; i++)
         {
@@ -172,6 +174,7 @@ public class Rhythm : MonoBehaviour
             else
                 Debug.Log($"<color=red>[Game Over]</color> 너무 느림! 오차: {timeDiffInMs:F1} ms");
 
+            RhythmSound.Instance.missSFX.Play();
             RhythmManager.Instance.gameOver = true;
             bgmSource.Stop();
             return;
@@ -184,6 +187,8 @@ public class Rhythm : MonoBehaviour
         else
             Debug.Log($"<color=orange>느림 (Late)</color> 오차: {timeDiffInMs:F1} ms");
 
+        Instantiate(RhythmVFX.Instance.goodVFX, new Vector3(-2.5f, 1, -1), Quaternion.identity);
+
         ProceedToNextTile();
     }
 
@@ -193,6 +198,7 @@ public class Rhythm : MonoBehaviour
 
         if (currentTileIndex >= mapTiles.Count)
         {
+            RhythmManager.Instance.gameClear = true;
             return;
         }
 

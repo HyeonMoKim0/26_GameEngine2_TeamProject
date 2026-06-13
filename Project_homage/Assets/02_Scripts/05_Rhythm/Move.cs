@@ -15,7 +15,7 @@ public class Move : MonoBehaviour
     {
         if (RhythmManager.Instance.isGame)
         {
-            transform.position += new Vector3(-90, 0, 0) * Time.deltaTime / 0.46875f;
+            transform.position += new Vector3(-10, 0, 0) * Time.deltaTime / 0.46875f;
         }
     }
 }

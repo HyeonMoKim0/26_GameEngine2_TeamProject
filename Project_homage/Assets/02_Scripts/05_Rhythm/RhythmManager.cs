@@ -34,10 +34,11 @@ public class RhythmManager : MonoBehaviour
             {
                 isGame = false;
 
+                RhythmSound.Instance.clearSFX.Play();
+                Instantiate(RhythmVFX.Instance.clearVFX, new Vector3(-2.5f, 1, -1), Quaternion.identity);
                 Invoke(nameof(Clear), 2f);
             }
 
-            // 비동의 버튼을 눌렀을 때 [Fail]
             if (gameOver)
             {
                 isGame = false;
