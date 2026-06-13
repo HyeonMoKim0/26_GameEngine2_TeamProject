@@ -22,7 +22,6 @@ public class Blaster : MonoBehaviour
     void Start()
     {
         spawnBlasterSound.Play();
-        lineRenderer = GetComponent<LineRenderer>();
         StartCoroutine(Blast(blastStartTime));
         StartCoroutine(DestroyBlaster(removeTime));
     }

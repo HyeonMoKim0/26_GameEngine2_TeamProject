@@ -9,10 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("Pause UI")]
     public GameObject pauseScreen;
-    public TextMeshProUGUI pauseLifeUI;
-    public TextMeshProUGUI pauseRoundUI;
+    public GameObject optionScreen;
 
     [Header("Ready UI")]
     public GameObject readyScreen;
@@ -21,7 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] howToPlaies;
 
     [Header("Main Setting")]
-    public int life = 4;
+    public int life = 0;
     public int totalRound = 0;
     public float gameSpeed = 1f;
 
@@ -38,8 +36,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-
-        DontDestroyOnLoad(pauseScreen);
         DontDestroyOnLoad(readyScreen);
     }
 
@@ -65,6 +61,7 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadScene(int randomRound)
     {
         HowTo(randomRound);
+        Pause.Instance.currentGame = randomRound;
         yield return new WaitForSeconds(5f);
 
         HowToOff();
@@ -99,14 +96,20 @@ public class GameManager : MonoBehaviour
         {
             case 1:
             case 4:
+                howToPlaies[0].SetActive(false);
                 howToPlaies[1].SetActive(true);
+                howToPlaies[2].SetActive(false);
                 break;
             case 2:
             case 3:
             case 6:
                 howToPlaies[0].SetActive(true);
+                howToPlaies[1].SetActive(false);
+                howToPlaies[2].SetActive(false);
                 break;
             case 5:
+                howToPlaies[0].SetActive(false);
+                howToPlaies[1].SetActive(false);
                 howToPlaies[2].SetActive(true);
                 break;
         }
@@ -118,18 +121,6 @@ public class GameManager : MonoBehaviour
         {
             howTo.SetActive(false);
         }
-    }
-
-    public void PauseGame()
-    {
-        pauseScreen.SetActive(true);
-        Time.timeScale = 0; 
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        pauseScreen.SetActive(false);
     }
 
     public void failedGame()
@@ -148,8 +139,6 @@ public class GameManager : MonoBehaviour
 
     private void ReloadUI()
     {
-        pauseLifeUI.text = "Life: " + life;
-        pauseRoundUI.text = "Round: " + totalRound;
         readyLifeUI.text = "Life: " + life;
         readyRoundUI.text = "Round: " + totalRound;
     }
@@ -168,15 +157,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (life > 0 && Input.GetKeyDown(KeyCode.Escape))
+        if (GameManager.instance.life > 0 && Input.GetKeyDown(KeyCode.Escape))
         {
             if (pauseScreen.activeSelf)
             {
-                ResumeGame();
+                Pause.Instance.ResumeGame();
             }
             else
             {
-                PauseGame();
+                Pause.Instance.PauseGame();
             }
         }
     }
