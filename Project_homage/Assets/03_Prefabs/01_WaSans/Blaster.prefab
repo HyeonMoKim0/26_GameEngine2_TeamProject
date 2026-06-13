@@ -578,22 +578,22 @@ PrefabInstance:
     - target: {fileID: 406107846907146454, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 406107846907146454, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406107846907146454, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406107846907146454, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406107846907146454, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
@@ -603,37 +603,67 @@ PrefabInstance:
     - target: {fileID: 406107846907146454, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 406107846907146454, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2210445613928763847, guid: b991b9938d6fffa439907f0910405825,
-        type: 3}
-      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5114967872741731495, guid: b991b9938d6fffa439907f0910405825,
+    - target: {fileID: 4785144788163254196, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
-      propertyPath: playOnAwake
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785144788163254196, guid: b991b9938d6fffa439907f0910405825,
+        type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5114967872741731495, guid: b991b9938d6fffa439907f0910405825,
+    - target: {fileID: 4785144788163254196, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
-      propertyPath: ShapeModule.enabled
+      propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785144788163254196, guid: b991b9938d6fffa439907f0910405825,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785144788163254196, guid: b991b9938d6fffa439907f0910405825,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785144788163254196, guid: b991b9938d6fffa439907f0910405825,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785144788163254196, guid: b991b9938d6fffa439907f0910405825,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785144788163254196, guid: b991b9938d6fffa439907f0910405825,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4785144788163254196, guid: b991b9938d6fffa439907f0910405825,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225586768467590063, guid: b991b9938d6fffa439907f0910405825,
+        type: 3}
+      propertyPath: m_UseWorldSpace
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8405164975222108037, guid: b991b9938d6fffa439907f0910405825,
         type: 3}
       propertyPath: m_Name
       value: Laser
-      objectReference: {fileID: 0}
-    - target: {fileID: 8523752314704014051, guid: b991b9938d6fffa439907f0910405825,
-        type: 3}
-      propertyPath: playOnAwake
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

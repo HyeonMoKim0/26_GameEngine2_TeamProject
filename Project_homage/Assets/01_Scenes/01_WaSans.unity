@@ -378,6 +378,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613930521}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &701279233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3108690465950897643, guid: efd24e7e85f44444ea02c13c6a4a5ffe,
+    type: 3}
+  m_PrefabInstance: {fileID: 8667915342538422862}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &838174064
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +582,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1291261662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2766199760340530970, guid: efd24e7e85f44444ea02c13c6a4a5ffe,
+    type: 3}
+  m_PrefabInstance: {fileID: 8667915342538422862}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1450442703
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,9 +1379,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6710008105563139761, guid: efd24e7e85f44444ea02c13c6a4a5ffe,
         type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 1291261662}
+    - target: {fileID: 6710008105563139761, guid: efd24e7e85f44444ea02c13c6a4a5ffe,
+        type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 701279233}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
