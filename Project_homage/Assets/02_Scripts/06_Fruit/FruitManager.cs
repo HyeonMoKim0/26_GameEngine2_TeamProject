@@ -17,6 +17,7 @@ public class FruitManager : MonoBehaviour
 
     [Header("UI Reference")]
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI mergeText;
 
     void Awake()
     {
@@ -59,6 +60,8 @@ public class FruitManager : MonoBehaviour
         Destroy(fruitB.gameObject);
         
         mergedFruits++;
+
+        FruitSFX.Instance.evolutionSFX.Play();
     }
 
     void Update()
@@ -91,6 +94,7 @@ public class FruitManager : MonoBehaviour
         }
 
         timerText.text = $"Time: {Mathf.Max(0, currentTime):F1}";
+        mergeText.text = $"Merge: {mergedFruits}";
     }
 
     void Clear()

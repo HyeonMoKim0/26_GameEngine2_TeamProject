@@ -96,6 +96,8 @@ public class FruitDropper : MonoBehaviour
         // 손을 떠났으므로 참조를 비우고, 다음 과일을 준비합니다.
         currentFruit = null;
 
+        FruitSFX.Instance.dropSFX.Play();
+
         // 다음 과일이 스폰될 때 바로 윗 공간(spawnYPosition)에 새로 생기므로 
         // 방금 떨어뜨린 과일과 절대 겹치지 않습니다!
         Invoke("PrepareNextFruit", 0.5f);
