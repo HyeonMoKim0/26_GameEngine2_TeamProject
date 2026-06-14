@@ -187,8 +187,6 @@ public class Rhythm : MonoBehaviour
         else
             Debug.Log($"<color=orange>느림 (Late)</color> 오차: {timeDiffInMs:F1} ms");
 
-        Instantiate(RhythmVFX.Instance.goodVFX, new Vector3(-2.5f, 1, -1), Quaternion.identity);
-
         ProceedToNextTile();
     }
 
@@ -208,6 +206,7 @@ public class Rhythm : MonoBehaviour
         currentOrbit = previousPivot;
 
         currentPivot.position = mapTiles[currentTileIndex - 1].transform.position;
+        Instantiate(RhythmVFX.Instance.goodVFX, new Vector3(-2.59f, 1, -1), Quaternion.identity);
 
         // 2. 새로운 정박 기준 각도 설정
         lastPivotAngle = mapTiles[currentTileIndex - 1].targetAngle + 180f;

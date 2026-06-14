@@ -1,17 +1,12 @@
 using UnityEngine;
 
-public class Patturn4Agree : MonoBehaviour
+public class SpawnLines : MonoBehaviour
 {
-    public GameObject Path;
+    public GameObject[] Line;
     // Start is called before the first frame update
     void Start()
     {
         
-    }
-
-    public void OnClickAgree()
-    {
-        Path.SetActive(false);
     }
 
     // Update is called once per frame

@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,6 +20,8 @@ public class GameManager : MonoBehaviour
     public int life = 0;
     public int totalRound = 0;
     public float gameSpeed = 1f;
+
+    public bool RoundOn = false;
 
     private void Awake()
     {
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
         gameSpeed = 1f + (totalRound / 5) * 0.05f;
         ReloadUI();
 
-        int randomRound = UnityEngine.Random.Range(1, 7);
+        int randomRound = UnityEngine.Random.Range(1, 7); // 1~6
         readyScreen.SetActive(true);
         StartCoroutine(LoadScene(randomRound));
     }
@@ -61,9 +61,13 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadScene(int randomRound)
     {
         HowTo(randomRound);
+        Pause.Instance.ResumeGame();
         Pause.Instance.currentGame = randomRound;
-        yield return new WaitForSeconds(5f);
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(5f);
 
+        Time.timeScale = 1f;
+        RoundOn = true;
         HowToOff();
         readyScreen.SetActive(false);
 
@@ -133,6 +137,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 1f;
             GameOver();
         }
     }
@@ -157,7 +162,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.life > 0 && Input.GetKeyDown(KeyCode.Escape))
+        if (RoundOn && Input.GetKeyDown(KeyCode.Escape))
         {
             if (pauseScreen.activeSelf)
             {

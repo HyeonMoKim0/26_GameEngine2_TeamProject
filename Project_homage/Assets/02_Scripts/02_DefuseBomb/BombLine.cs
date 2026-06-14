@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BombLine : MonoBehaviour
 {
     public GameObject bomb;
     Bomb b;
+    public Sprite cutted;
+
     // Start is called before the first frame update
     public enum wireType
     {
@@ -17,31 +18,40 @@ public class BombLine : MonoBehaviour
 
     void Start()
     {
-        b = GetComponent<Bomb>();
+        b = bomb.GetComponent<Bomb>();
     }
 
     public void OnClickRedButton()
     {
         b.DefuseBomb(wireType.Red);
         BomBSound.instance.PlayCutSFX();
+        CutLineImage();
     }
 
     public void OnClickYellowButton()
     {
         b.DefuseBomb(wireType.Yellow);
         BomBSound.instance.PlayCutSFX();
+        CutLineImage();
     }
 
     public void OnClickGreenButton()
     {
         b.DefuseBomb(wireType.Green);
         BomBSound.instance.PlayCutSFX();
+        CutLineImage();
     }
 
     public void OnClickBlueButton()
     {
         b.DefuseBomb(wireType.Blue);
         BomBSound.instance.PlayCutSFX();
+        CutLineImage();
+    }
+
+    void CutLineImage()
+    {
+        GetComponent<Image>().sprite = cutted;
     }
 
     // Update is called once per frame

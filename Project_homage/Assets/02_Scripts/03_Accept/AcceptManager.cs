@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AcceptManager : MonoBehaviour
 {
@@ -10,6 +8,7 @@ public class AcceptManager : MonoBehaviour
 
     [Header("Game Settings")]
     public float currentTime = 1f;
+    public float agreeTime;
     public bool isGame;
     public bool agree;
     public bool disagree;
@@ -17,6 +16,7 @@ public class AcceptManager : MonoBehaviour
     [Header("UI Settings")]
     public GameObject agreeText;
     public GameObject disagreeText;
+    public Slider timer;
 
     private void Awake()
     {
@@ -35,13 +35,15 @@ public class AcceptManager : MonoBehaviour
         if (isGame)
         {
             currentTime -= Time.deltaTime * GameManager.instance.gameSpeed;
+            timer.value = currentTime / agreeTime;
+
             // 동의 버튼을 눌렀을 때 [Clear]
             if (agree)
             {
                 isGame = false;
                 Debug.Log("You agreed!");
 
-                Invoke(nameof(Clear), 2f);
+                StartCoroutine(Clear());
             }
             
             // 비동의 버튼을 눌렀을 때 [Fail]
@@ -50,7 +52,12 @@ public class AcceptManager : MonoBehaviour
                 isGame = false;
                 Debug.Log("You disagreed!");
 
-                Invoke(nameof(Fail), 2f);
+                if (ButtonPattern.instance.isButtonPattern4)
+                {
+                    ButtonPattern.instance.pattern4Canvas.SetActive(false);
+                }
+
+                StartCoroutine(Fail());
             }
 
             if (currentTime < 0)
@@ -63,13 +70,19 @@ public class AcceptManager : MonoBehaviour
         }
     }
 
-    void Clear()
+    IEnumerator Clear()
     {
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
         GameManager.instance.RoundStandby();
     }
 
-    void Fail()
+    IEnumerator Fail()
     {
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
         GameManager.instance.failedGame();
     }
 }

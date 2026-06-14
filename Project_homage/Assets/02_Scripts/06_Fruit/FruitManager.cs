@@ -1,6 +1,7 @@
+using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FruitManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class FruitManager : MonoBehaviour
 
     // 인스펙터에서 0단계부터 마지막 단계까지 순서대로 정렬해야 합니다!
     public GameObject[] fruits;
+    public GameObject mergeVFX;
 
     [Header("Game Settings")]
     public float gameTime = 10f;
@@ -16,7 +18,7 @@ public class FruitManager : MonoBehaviour
     public bool isGame;
 
     [Header("UI Reference")]
-    public TextMeshProUGUI timerText;
+    public Slider timer;
     public TextMeshProUGUI mergeText;
 
     void Awake()
@@ -49,6 +51,7 @@ public class FruitManager : MonoBehaviour
         {
             // ★ 정확히 계산된 차기 레벨의 프리팹을 소환합니다.
             Instantiate(fruits[nextLevel], spawnPos, Quaternion.identity);
+            Instantiate(mergeVFX, spawnPos+new Vector3(0, 0, -3), Quaternion.identity);
         }
         else
         {
@@ -74,7 +77,7 @@ public class FruitManager : MonoBehaviour
                 isGame = false;
                 Debug.Log("Clear!!");
 
-                Invoke(nameof(Clear), 2f);
+                StartCoroutine(Clear());
             }
 
             // 제한 시간이 0이 되었을 때 [Fail]
@@ -83,7 +86,7 @@ public class FruitManager : MonoBehaviour
                 isGame = false;
                 Debug.Log("Time Over!!");
 
-                Invoke(nameof(Fail), 2f);
+                StartCoroutine(Fail());
             }
         }
 
@@ -93,17 +96,23 @@ public class FruitManager : MonoBehaviour
             currentTime -= Time.deltaTime;
         }
 
-        timerText.text = $"Time: {Mathf.Max(0, currentTime):F1}";
+        timer.value = currentTime / gameTime;
         mergeText.text = $"Merge: {mergedFruits}";
     }
 
-    void Clear()
+    IEnumerator Clear()
     {
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
         GameManager.instance.RoundStandby();
     }
 
-    void Fail()
+    IEnumerator Fail()
     {
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
         GameManager.instance.failedGame();
     }
 }

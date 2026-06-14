@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AgreeButton : MonoBehaviour
@@ -70,7 +68,7 @@ public class AgreeButton : MonoBehaviour
 
             if (ButtonPattern.instance.isButtonPattern3)
             {
-                buttonRect.transform.position -= Vector3.down * -270 * Time.deltaTime * GameManager.instance.gameSpeed;
+                buttonRect.transform.position -= Vector3.down * -720 * Time.deltaTime * GameManager.instance.gameSpeed;
             }
 
             if (ButtonPattern.instance.isButtonPattern5)

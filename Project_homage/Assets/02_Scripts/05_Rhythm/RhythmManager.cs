@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RhythmManager : MonoBehaviour
@@ -35,15 +34,15 @@ public class RhythmManager : MonoBehaviour
                 isGame = false;
 
                 RhythmSound.Instance.clearSFX.Play();
-                Instantiate(RhythmVFX.Instance.clearVFX, new Vector3(-2.5f, 1, -1), Quaternion.identity);
-                Invoke(nameof(Clear), 2f);
+                Instantiate(RhythmVFX.Instance.clearVFX, new Vector3(-2.59f, 1, -1), Quaternion.identity);
+                StartCoroutine(Clear());
             }
 
             if (gameOver)
             {
                 isGame = false;
 
-                Invoke(nameof(Fail), 2f);
+                StartCoroutine(Fail());
             }
         }
     }
@@ -53,13 +52,19 @@ public class RhythmManager : MonoBehaviour
         isGame = true;
     }
 
-    void Clear()
+    IEnumerator Clear()
     {
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
         GameManager.instance.RoundStandby();
     }
 
-    void Fail()
+    IEnumerator Fail()
     {
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
         GameManager.instance.failedGame();
     }
 }

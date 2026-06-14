@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TetrisManager : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class TetrisManager : MonoBehaviour
     public bool isGame;
 
     [Header("UI Reference")]
-    public TextMeshProUGUI timerText;
+    public Slider timer;
 
 
     void Awake()
@@ -46,7 +45,7 @@ public class TetrisManager : MonoBehaviour
                 isGame = false;
                 Debug.Log("Tetris!!");
 
-                Invoke(nameof(Clear), 2f);
+                StartCoroutine(Clear());
             }
 
             // 제한 시간이 0이 되었을 때 [Fail]
@@ -55,26 +54,31 @@ public class TetrisManager : MonoBehaviour
                 isGame = false;
                 Debug.Log("Time Over!!");
 
-                Invoke(nameof(Fail), 2f);
+                StartCoroutine(Fail());
             }
         }
 
         // 타이머 업데이트
         if (isGame)
         {
-            currentTime -= Time.deltaTime;
+            currentTime -= Time.deltaTime * GameManager.instance.gameSpeed;
         }
-
-        timerText.text = $"Time: {Mathf.Max(0, currentTime):F1}";
+        timer.value = currentTime / gameTime;
     }
 
-    void Clear()
+    IEnumerator Clear()
     {
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
         GameManager.instance.RoundStandby();
     }
 
-    void Fail()
+    IEnumerator Fail()
     {
+        yield return new WaitForSecondsRealtime(2f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
         GameManager.instance.failedGame();
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ButtonPattern : MonoBehaviour
@@ -79,6 +78,7 @@ public class ButtonPattern : MonoBehaviour
     void ButtonPattern1()
     {
         AcceptManager.instance.currentTime = 5f;
+        AcceptManager.instance.agreeTime = 5f;
 
         isButtonPattern1 = true;
 
@@ -88,6 +88,7 @@ public class ButtonPattern : MonoBehaviour
     void ButtonPattern2()
     {
         AcceptManager.instance.currentTime = 5f;
+        AcceptManager.instance.agreeTime = 5f;
 
         isButtonPattern2 = true;
 
@@ -101,6 +102,7 @@ public class ButtonPattern : MonoBehaviour
     IEnumerator ButtonPattern3()
     {
         AcceptManager.instance.currentTime = 10f;
+        AcceptManager.instance.agreeTime = 10f;
 
         isButtonPattern3 = true;
 
@@ -126,6 +128,7 @@ public class ButtonPattern : MonoBehaviour
     void ButtonPattern4()
     {
         AcceptManager.instance.currentTime = 10f;
+        AcceptManager.instance.agreeTime = 10f;
 
         Vector3 agreePos = new Vector3(Screen.width / 32 * 13, Screen.height / 5, 0);
         Vector3 disagreePos = new Vector3(Screen.width / 32 * 19, Screen.height / 5, 0);
@@ -145,6 +148,7 @@ public class ButtonPattern : MonoBehaviour
     void ButtonPattern5()
     {
         AcceptManager.instance.currentTime = 5f;
+        AcceptManager.instance.agreeTime = 5f;
 
         Vector3 agreePos = new Vector3(Screen.width / 32 * 13, Screen.height / 5, 0);
         Vector3 disagreePos = new Vector3(Screen.width / 32 * 19, Screen.height / 5, 0);

@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
@@ -37,8 +35,15 @@ public class Pause : MonoBehaviour
 
     public void ResumeGame()
     {
-        Time.timeScale = 1;
+        if (GameManager.instance.RoundOn) Time.timeScale = 1;
         gameObject.SetActive(false);
+    }
+
+    public void GoToTitle()
+    {
+        gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("00_Title");
     }
 
     void HowTo(int randomRound)

@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SansManager : MonoBehaviour
@@ -45,7 +42,7 @@ public class SansManager : MonoBehaviour
                 currentTime = 0;
                 Debug.Log("Game Clear!");
 
-                Invoke(nameof(Clear), 2f);
+                StartCoroutine(Clear());
             }
 
             // 플레이어가 파괴되었을 때 [Fail]
@@ -54,19 +51,29 @@ public class SansManager : MonoBehaviour
                 isGame = false;
                 Debug.Log("Game Fail!");
 
-                Invoke(nameof(Fail), 2f);
+                StartCoroutine(Fail());
             }
         }
     }
 
-    void Clear()
+    IEnumerator Clear()
     {
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
+
+        yield return new WaitForSecondsRealtime(1f);
         bgm.Stop();
         GameManager.instance.RoundStandby();
     }
 
-    void Fail()
+    IEnumerator Fail()
     {
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 0f;
+        GameManager.instance.RoundOn = false;
+
+        yield return new WaitForSecondsRealtime(1f);
         bgm.Stop();
         GameManager.instance.failedGame();
     }
