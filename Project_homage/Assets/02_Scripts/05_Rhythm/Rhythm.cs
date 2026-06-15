@@ -125,24 +125,39 @@ public class Rhythm : MonoBehaviour
         // 매 프레임 모니터 주사율에 맞춰 부드럽게 흐르는 Time.deltaTime을 사용하여 가상 각도를 계산합니다.
         float directionMultiplier = isClockwise ? -1f : 1f;
 
-        // 프레임 드랍이나 미세한 렉으로 인해 'Time.deltaTime 기반 각도'와 '실제 오디오 정박 각도'가 벌어지는 것을 방지합니다.
-        // 현재 오디오 정박 기준 위치를 계산합니다.
-        double timeSinceLastTileTarget = currentProgressTime - lastPivotTargetTime;
-        if (timeSinceLastTileTarget < 0) timeSinceLastTileTarget = 0;
-        float audioTargetAngle = lastPivotAngle + ((float)timeSinceLastTileTarget * rotationSpeed * directionMultiplier);
+        float secondsPerBeat = 60f / bpm;
 
-        // 눈에 보이는 각도가 실제 오디오 박자 각도와 너무 벌어지면 오디오 각도로 부드럽게 보정(Lerp)해 줍니다.
-        // 이 처리를 통해 끊김은 100% 사라지고, 음악 싱크를 강제로 따라가게 됩니다.
-        if (isFirstFrameAfterStart)
+        // 💡 [조정 포인트] 여기에 원하는 만큼의 박수를 곱해 회전 시작 시간을 제어합니다.
+        // 예: 3박자 대기 = secondsPerBeat * 3f; / 4박자 대기 = secondsPerBeat * 4f;
+        float preCountTime = secondsPerBeat * 2f;
+
+        float audioTargetAngle = lastPivotAngle;
+
+        // [조건 추가] 설정한 대기 시간(3박자)이 지나기 전에는 공을 시작 위치에 묶어둡니다.
+        if (currentProgressTime < preCountTime)
         {
-            visualCurrentAngle = audioTargetAngle;
-            isFirstFrameAfterStart = false; // 이후 프레임부터는 정상적으로 deltaTime 회전 및 Lerp 적용
+            audioTargetAngle = lastPivotAngle;
+            visualCurrentAngle = lastPivotAngle; // 가상 각도도 강제 고정
         }
         else
         {
-            // 정상 프레임 플레이 시의 부드러운 deltaTime 기반 회전
-            float angleDelta = rotationSpeed * Time.deltaTime * directionMultiplier;
-            visualCurrentAngle += angleDelta;
+            // 대기 시간이 지난 후부터 실제 플레이 타임을 연산하여 회전을 시작합니다.
+            double timeSinceLastTileTarget = currentProgressTime - lastPivotTargetTime;
+            if (timeSinceLastTileTarget < 0) timeSinceLastTileTarget = 0;
+
+            audioTargetAngle = lastPivotAngle + ((float)timeSinceLastTileTarget * rotationSpeed * directionMultiplier);
+
+            // 정상 프레임 회전 연산
+            if (isFirstFrameAfterStart)
+            {
+                visualCurrentAngle = audioTargetAngle;
+                isFirstFrameAfterStart = false;
+            }
+            else
+            {
+                float angleDelta = rotationSpeed * Time.deltaTime * directionMultiplier;
+                visualCurrentAngle += angleDelta;
+            }
         }
 
         visualCurrentAngle = Mathf.Lerp(visualCurrentAngle, audioTargetAngle, Time.deltaTime * 25f);
