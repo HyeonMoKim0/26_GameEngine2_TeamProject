@@ -1,0 +1,19 @@
+using UnityEngine;
+
+public class Move : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (RhythmManager.Instance.isGame)
+        {
+            transform.position += new Vector3(-10, 0, 0) * Time.deltaTime / 0.46875f;
+        }
+    }
+}

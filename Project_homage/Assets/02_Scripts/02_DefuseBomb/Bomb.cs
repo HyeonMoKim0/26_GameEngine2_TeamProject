@@ -1,11 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-using static Bomb;
+using static BombLine;
 
 public class Bomb : MonoBehaviour
 {
@@ -13,16 +9,16 @@ public class Bomb : MonoBehaviour
 
     int countWire = 1;
     command trig;
-
-    public enum wireType
-    {
-        Red,
-        Blue
-    }
     public enum command
     {
         CutRed,
-        DontCutRed
+        DontCutRed,
+        CutBlue,
+        DontCutBlue,
+        CutGreen,
+        DontCutGreen,
+        CutYellow,
+        DontCutYellow
     }
 
     // Start is called before the first frame update
@@ -40,10 +36,28 @@ public class Bomb : MonoBehaviour
         switch (randomCommand)
         {
             case command.CutRed:
-                commandText.GetComponent<TextMeshProUGUI>().text = "Cut the RED wire!";
+                commandText.GetComponent<TextMeshProUGUI>().text = "빨간 선을 잘라라!";
                 break;
             case command.DontCutRed:
-                commandText.GetComponent<TextMeshProUGUI>().text = "Don't cut the RED wire!";
+                commandText.GetComponent<TextMeshProUGUI>().text = "빨간 선을 자르지 마라!";
+                break;
+            case command.CutBlue:
+                commandText.GetComponent<TextMeshProUGUI>().text = "파란 선을 잘라라!";
+                break;
+            case command.DontCutBlue:
+                commandText.GetComponent<TextMeshProUGUI>().text = "파란 선을 자르지 마라!";
+                break;
+            case command.CutGreen:
+                commandText.GetComponent<TextMeshProUGUI>().text = "초록 선을 잘라라!";
+                break;
+            case command.DontCutGreen:
+                commandText.GetComponent<TextMeshProUGUI>().text = "초록 선을 자르지 마라!";
+                break;
+            case command.CutYellow:
+                commandText.GetComponent<TextMeshProUGUI>().text = "노란 선을 잘라라!";
+                break;
+            case command.DontCutYellow:
+                commandText.GetComponent<TextMeshProUGUI>().text = "노란 선을 자르지 마라!";
                 break;
         }
 
@@ -57,35 +71,69 @@ public class Bomb : MonoBehaviour
             case command.CutRed:
                 if (clickedWire == wireType.Red)
                 {
-                    countWire--;
-                    if (countWire == 0)
-                        BombManager.instance.defused = true;
+                    BombManager.instance.defused = true;
                 }
                 else
                     BombManager.instance.wrong = true;
                 break;
 
             case command.DontCutRed:
+                if (clickedWire != wireType.Red)
+                {
+                    BombManager.instance.defused = true;
+                }
+                else
+                    BombManager.instance.wrong = true;
+                break;
+            case command.CutBlue:
                 if (clickedWire == wireType.Blue)
                 {
-                    countWire--;
-                    if (countWire == 0)
-                        BombManager.instance.defused = true;
+                    BombManager.instance.defused = true;
+                }
+                else
+                    BombManager.instance.wrong = true;
+                break;
+            case command.DontCutBlue:
+                if (clickedWire != wireType.Blue)
+                {
+                    BombManager.instance.defused = true;
+                }
+                else
+                    BombManager.instance.wrong = true;
+                break;
+            case command.CutGreen:
+                if (clickedWire == wireType.Green)
+                {
+                    BombManager.instance.defused = true;
+                }
+                else
+                    BombManager.instance.wrong = true;
+                break;
+            case command.DontCutGreen:
+                if (clickedWire != wireType.Green)
+                {
+                    BombManager.instance.defused = true;
+                }
+                else
+                    BombManager.instance.wrong = true;
+                break;
+            case command.CutYellow:
+                if (clickedWire == wireType.Yellow)
+                {
+                    BombManager.instance.defused = true;
+                }
+                else
+                    BombManager.instance.wrong = true;
+                break;
+            case command.DontCutYellow:
+                if (clickedWire != wireType.Yellow)
+                {
+                    BombManager.instance.defused = true;
                 }
                 else
                     BombManager.instance.wrong = true;
                 break;
         }
-    }
-
-    public void OnClickRedButton()
-    {
-        DefuseBomb(wireType.Red);
-    }
-
-    public void OnClickBlueButton()
-    {
-        DefuseBomb(wireType.Blue);
     }
 
     // Update is called once per frame
